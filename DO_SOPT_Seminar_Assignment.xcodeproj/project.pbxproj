@@ -17,9 +17,11 @@
 		2A1D15AB2ADE504C00FB5B9F /* UIStackView+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15AA2ADE504C00FB5B9F /* UIStackView+.swift */; };
 		2A1D15AF2ADE52A500FB5B9F /* ImageLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15AE2ADE52A500FB5B9F /* ImageLiterals.swift */; };
 		2A1D15B22ADE530500FB5B9F /* UIImage+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15B12ADE530500FB5B9F /* UIImage+.swift */; };
+		2A1D15BF2ADE5F6C00FB5B9F /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 2A1D15BE2ADE5F6C00FB5B9F /* SnapKit */; };
+		2A1D15C22ADE5F7700FB5B9F /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 2A1D15C12ADE5F7700FB5B9F /* Then */; };
 		2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */; };
 		2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */; };
-		2A9E85E02ACD679600D22C16 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DF2ACD679600D22C16 /* ViewController.swift */; };
+		2A9E85E02ACD679600D22C16 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DF2ACD679600D22C16 /* MainViewController.swift */; };
 		2A9E85E52ACD679800D22C16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E42ACD679800D22C16 /* Assets.xcassets */; };
 		2A9E85E82ACD679800D22C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E62ACD679800D22C16 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
@@ -38,7 +40,7 @@
 		2A9E85D82ACD679600D22C16 /* DO_SOPT_Seminar_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DO_SOPT_Seminar_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		2A9E85DF2ACD679600D22C16 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2A9E85DF2ACD679600D22C16 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2A9E85E42ACD679800D22C16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9E85E72ACD679800D22C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9E85E92ACD679800D22C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -49,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A1D15BF2ADE5F6C00FB5B9F /* SnapKit in Frameworks */,
+				2A1D15C22ADE5F7700FB5B9F /* Then in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,7 +130,7 @@
 		2A8723122ADD88D100031C21 /* SecondSeminar */ = {
 			isa = PBXGroup;
 			children = (
-				2A9E85DF2ACD679600D22C16 /* ViewController.swift */,
+				2A9E85DF2ACD679600D22C16 /* MainViewController.swift */,
 			);
 			path = SecondSeminar;
 			sourceTree = "<group>";
@@ -174,6 +178,10 @@
 			dependencies = (
 			);
 			name = DO_SOPT_Seminar_Assignment;
+			packageProductDependencies = (
+				2A1D15BE2ADE5F6C00FB5B9F /* SnapKit */,
+				2A1D15C12ADE5F7700FB5B9F /* Then */,
+			);
 			productName = DO_SOPT_Seminar_Assignment;
 			productReference = 2A9E85D82ACD679600D22C16 /* DO_SOPT_Seminar_Assignment.app */;
 			productType = "com.apple.product-type.application";
@@ -202,6 +210,10 @@
 				Base,
 			);
 			mainGroup = 2A9E85CF2ACD679600D22C16;
+			packageReferences = (
+				2A1D15BD2ADE5F6C00FB5B9F /* XCRemoteSwiftPackageReference "SnapKit" */,
+				2A1D15C02ADE5F7700FB5B9F /* XCRemoteSwiftPackageReference "Then" */,
+			);
 			productRefGroup = 2A9E85D92ACD679600D22C16 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -235,7 +247,7 @@
 			files = (
 				2A1D15A72ADE4D5300FB5B9F /* UIFont+.swift in Sources */,
 				2A1D15AB2ADE504C00FB5B9F /* UIStackView+.swift in Sources */,
-				2A9E85E02ACD679600D22C16 /* ViewController.swift in Sources */,
+				2A9E85E02ACD679600D22C16 /* MainViewController.swift in Sources */,
 				2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */,
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,
 				2A1D15B22ADE530500FB5B9F /* UIImage+.swift in Sources */,
@@ -448,6 +460,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2A1D15BD2ADE5F6C00FB5B9F /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		2A1D15C02ADE5F7700FB5B9F /* XCRemoteSwiftPackageReference "Then" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Then.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2A1D15BE2ADE5F6C00FB5B9F /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A1D15BD2ADE5F6C00FB5B9F /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		2A1D15C12ADE5F7700FB5B9F /* Then */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2A1D15C02ADE5F7700FB5B9F /* XCRemoteSwiftPackageReference "Then" */;
+			productName = Then;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2A9E85D02ACD679600D22C16 /* Project object */;
 }

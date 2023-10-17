@@ -10,22 +10,22 @@ import UIKit
 extension UIFont {
     
     static func displayBold(ofSize size: CGFloat) -> UIFont{
-        return UIFont(name: "SF-Pro-Display-Bold", size: size)!
+        return UIFont(name: "SFProDisplay-Bold", size: size)!
     }
     
     static func displayThin(ofSize size: CGFloat) -> UIFont{
-        return UIFont(name: "SF-Pro-Display-Thin", size: size)!
+        return UIFont(name: "SFProDisplay-Thin", size: size)!
     }
     
     static func displayRegular(ofSize size: CGFloat) -> UIFont{
-        return UIFont(name: "SF-Pro-Display-Regular", size: size)!
+        return UIFont(name: "SFProDisplay-Regular", size: size)!
     }
     
     static func displayLight(ofSize size: CGFloat) -> UIFont{
-        return UIFont(name: "SF-Pro-Display-Light", size: size)!
+        return UIFont(name: "SFProDisplay-Light", size: size)!
     }
     
     static func displayMedium(ofSize size: CGFloat) -> UIFont{
-        return UIFont(name: "SF-Pro-Display-Medium", size: size)!
+        return UIFont(name: "SFProDisplay-Medium", size: size)!
     }
 }
