@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MainViewController: UIViewController {
+final class WeatherViewController: UIViewController {
 
     private let myScrollView = UIScrollView()
     private var contentView = UIView()
@@ -28,7 +28,6 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
         setStyle()
         setLayout()
@@ -36,6 +35,7 @@ final class MainViewController: UIViewController {
 
     private func setStyle() {
         view.backgroundColor = .black
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
         
         myScrollView.do {
             $0.backgroundColor = .black
@@ -165,6 +165,8 @@ final class MainViewController: UIViewController {
     
     @objc
     func backGroundTapped() {
+        let viewController = WeatherDetailViewController()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
-
 }
