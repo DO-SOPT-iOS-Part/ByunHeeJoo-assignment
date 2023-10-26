@@ -165,7 +165,7 @@ final class WeatherViewController: UIViewController {
     
     @objc
     func backGroundTapped() {
-        let viewController = WeatherDetailViewController()
+        let viewController = PageNavigationController()
         self.navigationController?.setNavigationBarHidden(true, animated: true)
         self.navigationController?.pushViewController(viewController, animated: true)
     }

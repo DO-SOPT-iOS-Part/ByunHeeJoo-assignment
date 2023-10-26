@@ -1,8 +1,8 @@
 //
-//  WeatherDetailViewController.swift
+//  ThirdDetailViewController.swift
 //  DO_SOPT_Seminar_Assignment
 //
-//  Created by 변희주 on 2023/10/17.
+//  Created by 변희주 on 2023/10/26.
 //
 
 import UIKit
@@ -10,21 +10,21 @@ import UIKit
 import SnapKit
 import Then
 
-final class WeatherDetailViewController: UIViewController {
+final class WeatherDetailThirdViewController: UIViewController {
 
     private let myScrollView = UIScrollView()
     private var contentView = UIView()
-    private let backGroundImage = UIImageView()
     
+    private let backGroundImage = UIImageView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setStyle()
         setLayout()
     }
     
     private func setStyle() {
-        
         myScrollView.do {
             $0.backgroundColor = .black
             $0.showsVerticalScrollIndicator = false
@@ -56,4 +56,5 @@ final class WeatherDetailViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
     }
+
 }
