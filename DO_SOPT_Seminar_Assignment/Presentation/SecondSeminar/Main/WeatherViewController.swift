@@ -112,8 +112,9 @@ final class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController: BackGroundButtonAction {
-    func backGroundTapped() {
+    func backGroundTapped(index: Int) {
         let viewController = PageNavigationController()
+        viewController.pageIndex = index
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }

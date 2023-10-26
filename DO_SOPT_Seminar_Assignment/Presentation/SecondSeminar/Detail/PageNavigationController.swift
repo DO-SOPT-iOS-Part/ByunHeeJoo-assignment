@@ -11,7 +11,9 @@ import SnapKit
 import Then
 
 final class PageNavigationController: UIViewController {
-        
+    
+    var pageIndex = 0
+    
     private lazy var dataViewControllers: [UIViewController] = {
         var viewControllers: [WeatherDetailViewController] = []
 
@@ -38,12 +40,14 @@ final class PageNavigationController: UIViewController {
         setStyle()
         setLayout()
         setDelegate()
+        
     }
     
     private func setStyle() {
-        if let firstVC = dataViewControllers.first {
-            pageViewController.setViewControllers([firstVC], direction: .forward, animated: true, completion: nil)
-        }
+        
+        print(pageIndex)
+        let startingViewController = dataViewControllers[pageIndex]
+            pageViewController.setViewControllers([startingViewController], direction: .forward, animated: false, completion: nil)
     }
     
     private func setLayout() {

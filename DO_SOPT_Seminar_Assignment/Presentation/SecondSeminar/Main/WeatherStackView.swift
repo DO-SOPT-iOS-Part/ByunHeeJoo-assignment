@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 protocol BackGroundButtonAction: AnyObject {
-    func backGroundTapped()
+    func backGroundTapped(index: Int)
 }
 
 final class WeatherStackView: UIView {
@@ -43,6 +43,7 @@ final class WeatherStackView: UIView {
             let highLowTemperatureLabel = UILabel()
                         
             placeViewBackGround.do {
+                $0.tag = i
                 $0.setImage(ImageLiterals.imgBackGround.imgQuarterBackground, for: .normal)
                 $0.contentVerticalAlignment = .fill
                 $0.contentHorizontalAlignment = .fill
@@ -129,10 +130,10 @@ final class WeatherStackView: UIView {
 
     }
     
-    @objc
-    func backGroundTapped() {
-        delegate?.backGroundTapped()
+    @objc func
+    backGroundTapped(sender: UIButton) {
+        let tappedIndex = sender.tag
+        delegate?.backGroundTapped(index: tappedIndex)
     }
-    
 }
 
