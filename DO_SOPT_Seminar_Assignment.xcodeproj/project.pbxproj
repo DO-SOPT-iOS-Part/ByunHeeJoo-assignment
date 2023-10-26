@@ -25,6 +25,9 @@
 		2A1D15CC2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */; };
 		2A1D15D02AEA8F8300FB5B9F /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15CF2AEA8F8300FB5B9F /* StringLiterals.swift */; };
 		2A1D15D22AEAA3A200FB5B9F /* CALayer+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15D12AEAA3A200FB5B9F /* CALayer+.swift */; };
+		2A1D15D42AEAAE8A00FB5B9F /* WeatherContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15D32AEAAE8A00FB5B9F /* WeatherContentView.swift */; };
+		2A1D15D62AEAB18200FB5B9F /* WeatherDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15D52AEAB18200FB5B9F /* WeatherDetail.swift */; };
+		2A1D15D82AEABA0B00FB5B9F /* Adjust+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15D72AEABA0B00FB5B9F /* Adjust+.swift */; };
 		2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */; };
 		2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */; };
 		2A9E85E02ACD679600D22C16 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DF2ACD679600D22C16 /* WeatherViewController.swift */; };
@@ -49,6 +52,9 @@
 		2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailFirstViewController.swift; sourceTree = "<group>"; };
 		2A1D15CF2AEA8F8300FB5B9F /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		2A1D15D12AEAA3A200FB5B9F /* CALayer+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+.swift"; sourceTree = "<group>"; };
+		2A1D15D32AEAAE8A00FB5B9F /* WeatherContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherContentView.swift; sourceTree = "<group>"; };
+		2A1D15D52AEAB18200FB5B9F /* WeatherDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetail.swift; sourceTree = "<group>"; };
+		2A1D15D72AEABA0B00FB5B9F /* Adjust+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Adjust+.swift"; sourceTree = "<group>"; };
 		2A9E85D82ACD679600D22C16 /* DO_SOPT_Seminar_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DO_SOPT_Seminar_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -107,6 +113,8 @@
 				2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */,
 				2A1D15C72AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift */,
 				2A1D15C92AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift */,
+				2A1D15D32AEAAE8A00FB5B9F /* WeatherContentView.swift */,
+				2A1D15D52AEAB18200FB5B9F /* WeatherDetail.swift */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -138,6 +146,7 @@
 				2A1D15A82ADE4FD900FB5B9F /* UIView+.swift */,
 				2A1D15AA2ADE504C00FB5B9F /* UIStackView+.swift */,
 				2A1D15D12AEAA3A200FB5B9F /* CALayer+.swift */,
+				2A1D15D72AEABA0B00FB5B9F /* Adjust+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -280,13 +289,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A1D15C42ADE6EA700FB5B9F /* PageNavigationController.swift in Sources */,
+				2A1D15D62AEAB18200FB5B9F /* WeatherDetail.swift in Sources */,
 				2A1D15CC2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift in Sources */,
 				2A1D15A72ADE4D5300FB5B9F /* UIFont+.swift in Sources */,
 				2A1D15CA2AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift in Sources */,
+				2A1D15D42AEAAE8A00FB5B9F /* WeatherContentView.swift in Sources */,
 				2A1D15C82AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift in Sources */,
 				2A1D15AB2ADE504C00FB5B9F /* UIStackView+.swift in Sources */,
 				2A9E85E02ACD679600D22C16 /* WeatherViewController.swift in Sources */,
 				2A1D15D22AEAA3A200FB5B9F /* CALayer+.swift in Sources */,
+				2A1D15D82AEABA0B00FB5B9F /* Adjust+.swift in Sources */,
 				2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */,
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,
 				2A1D15B22ADE530500FB5B9F /* UIImage+.swift in Sources */,

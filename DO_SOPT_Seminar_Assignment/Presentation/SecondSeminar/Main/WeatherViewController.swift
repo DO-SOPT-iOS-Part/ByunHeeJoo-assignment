@@ -117,20 +117,20 @@ final class WeatherViewController: UIViewController {
         }
         
         moreButton.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(8)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.size.equalTo(44)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(8.adjusted)
+            $0.trailing.equalToSuperview().inset(10.adjusted)
+            $0.size.equalTo(44.adjusted)
         }
         
         titleLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(53)
-            $0.leading.equalToSuperview().inset(20)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(53.adjusted)
+            $0.leading.equalToSuperview().inset(20.adjusted)
         }
         
         myFirstPlaceView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(160)
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.height.equalTo(117)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(160.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+            $0.height.equalTo(117.adjusted)
         }
         
         placeViewBackGround.snp.makeConstraints {
@@ -138,28 +138,28 @@ final class WeatherViewController: UIViewController {
         }
         
         myPlaceLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(10.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         firstPlaceLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(44)
-            $0.leading.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(44.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         firstWeatherLabel.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(10)
-            $0.leading.equalToSuperview().inset(16)
+            $0.bottom.equalToSuperview().inset(10.adjusted)
+            $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
         firstTemperatureLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(4)
-            $0.trailing.equalToSuperview().inset(16)
+            $0.top.equalToSuperview().inset(4.adjusted)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
         }
         
         firstHighLowTemperatureLabel.snp.makeConstraints {
-            $0.trailing.equalToSuperview().inset(16)
-            $0.bottom.equalToSuperview().inset(10)
+            $0.trailing.equalToSuperview().inset(16.adjusted)
+            $0.bottom.equalToSuperview().inset(10.adjusted)
         }
     }
     

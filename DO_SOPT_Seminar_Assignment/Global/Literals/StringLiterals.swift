@@ -15,5 +15,6 @@ enum StringLiterals {
         static let firstWeather = "흐림"
         static let firstTemperature = "21°"
         static let firstHighLowTemperature = "최고:29°  최저:15°"
+        static let discription = "08:00~09:00에 강우 상태가, 18:00에 한\n때 흐린 상태가 예상됩니다."
     }
 }

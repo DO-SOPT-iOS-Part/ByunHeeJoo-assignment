@@ -24,8 +24,8 @@ final class WeatherDetailFirstViewController: UIViewController {
     
     private let timeLineBorder = UIView()
     private let discriptionLabel = UILabel()
-    private let weatherScrollView = UIScrollView()
-    private let weatherContentView = UIView()
+    private let weatherScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 1000, height: 0))
+    private let weatherContentView = WeatherContentView()
     
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
     private let mapButton = UIButton()
@@ -81,7 +81,7 @@ final class WeatherDetailFirstViewController: UIViewController {
         }
         
         discriptionLabel.do {
-            $0.text = "08:00~09:00에 강우 상태가, 18:00에 한\n때 흐린 상태가 예상됩니다."
+            $0.text = StringLiterals.firstWeather.discription
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 18)
             $0.numberOfLines = 2
@@ -89,12 +89,13 @@ final class WeatherDetailFirstViewController: UIViewController {
         
         weatherScrollView.do {
             $0.backgroundColor = .clear
-            $0.showsVerticalScrollIndicator = false
-            $0.contentInsetAdjustmentBehavior = .never
+            $0.showsHorizontalScrollIndicator = false
+            $0.isScrollEnabled = true
+            $0.layer.addBorder([.top], color: UIColor.gray, width: 0.5)
         }
         
         divisionLine.do {
-            $0.layer.addBorder([.top], color: UIColor.gray, width: 0.5)
+            $0.layer.addBorder([.top], color: UIColor.gray, width: 0.8)
         }
         
         mapButton.do {
@@ -147,68 +148,75 @@ final class WeatherDetailFirstViewController: UIViewController {
         }
         
         firstPlaceLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(34)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
             $0.centerX.equalToSuperview()
         }
 
         firstTemperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(76)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(76.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         firstWeatherLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(188)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(188.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         firstHighLowTemperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(222)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(222.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         timeLineBorder.snp.makeConstraints {
-            $0.leading.trailing.equalToSuperview().inset(20)
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(290)
-            $0.height.equalTo(212)
+            $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(290.adjusted)
+            $0.height.equalTo(212.adjusted)
         }
         
         weatherScrollView.snp.makeConstraints {
-            $0.width.equalTo(weatherContentView)
-            $0.height.equalTo(146)
+            $0.top.equalToSuperview().inset(66.adjusted)
+            $0.leading.equalToSuperview().inset(14.adjusted)
+            $0.trailing.bottom.equalToSuperview()
+        }
+        
+        weatherContentView.snp.makeConstraints {
+            $0.edges.height.equalToSuperview()
+            $0.width.equalTo(810.adjusted)
+            $0.height.equalTo(146.adjusted)
         }
         
         discriptionLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10)
+            $0.top.equalToSuperview().inset(10.adjusted)
             $0.centerX.equalToSuperview()
         }
         
         divisionLine.snp.makeConstraints {
             $0.bottom.width.equalToSuperview()
-            $0.height.equalTo(82)
+            $0.height.equalTo(82.adjusted)
         }
         
         mapButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(34)
-            $0.leading.equalToSuperview().inset(10)
-            $0.size.equalTo(44)
+            $0.bottom.equalToSuperview().inset(34.adjusted)
+            $0.leading.equalToSuperview().inset(10.adjusted)
+            $0.size.equalTo(44.adjusted)
         }
         
         popButton.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(34)
-            $0.trailing.equalToSuperview().inset(10)
-            $0.size.equalTo(44)
+            $0.bottom.equalToSuperview().inset(34.adjusted)
+            $0.trailing.equalToSuperview().inset(10.adjusted)
+            $0.size.equalTo(44.adjusted)
         }
         
         arrowImage.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(44)
+            $0.bottom.equalToSuperview().inset(44.adjusted)
             $0.centerX.equalToSuperview().offset(-15)
-            $0.size.equalTo(24)
+            $0.size.equalTo(24.adjusted)
         }
         
         dotImage.snp.makeConstraints {
-            $0.bottom.equalToSuperview().inset(44)
+            $0.bottom.equalToSuperview().inset(44.adjusted)
             $0.centerX.equalToSuperview().offset(15)
-            $0.size.equalTo(24)
+            $0.size.equalTo(24.adjusted)
         }
         
         backGroundImage.snp.makeConstraints {
