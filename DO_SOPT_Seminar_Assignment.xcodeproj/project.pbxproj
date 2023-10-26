@@ -23,6 +23,7 @@
 		2A1D15C82AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15C72AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift */; };
 		2A1D15CA2AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15C92AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift */; };
 		2A1D15CC2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */; };
+		2A1D15D02AEA8F8300FB5B9F /* StringLiterals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1D15CF2AEA8F8300FB5B9F /* StringLiterals.swift */; };
 		2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */; };
 		2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */; };
 		2A9E85E02ACD679600D22C16 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DF2ACD679600D22C16 /* WeatherViewController.swift */; };
@@ -45,6 +46,7 @@
 		2A1D15C72AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailSecondViewController.swift; sourceTree = "<group>"; };
 		2A1D15C92AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailThirdViewController.swift; sourceTree = "<group>"; };
 		2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDetailFirstViewController.swift; sourceTree = "<group>"; };
+		2A1D15CF2AEA8F8300FB5B9F /* StringLiterals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringLiterals.swift; sourceTree = "<group>"; };
 		2A9E85D82ACD679600D22C16 /* DO_SOPT_Seminar_Assignment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DO_SOPT_Seminar_Assignment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A9E85DB2ACD679600D22C16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A9E85DD2ACD679600D22C16 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,8 +85,28 @@
 			isa = PBXGroup;
 			children = (
 				2A1D15AE2ADE52A500FB5B9F /* ImageLiterals.swift */,
+				2A1D15CF2AEA8F8300FB5B9F /* StringLiterals.swift */,
 			);
 			path = Literals;
+			sourceTree = "<group>";
+		};
+		2A1D15CD2AEA8F4800FB5B9F /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				2A9E85DF2ACD679600D22C16 /* WeatherViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		2A1D15CE2AEA8F5100FB5B9F /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				2A1D15C32ADE6EA700FB5B9F /* PageNavigationController.swift */,
+				2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */,
+				2A1D15C72AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift */,
+				2A1D15C92AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift */,
+			);
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		2A87230D2ADD886700031C21 /* Application */ = {
@@ -138,11 +160,8 @@
 		2A8723122ADD88D100031C21 /* SecondSeminar */ = {
 			isa = PBXGroup;
 			children = (
-				2A9E85DF2ACD679600D22C16 /* WeatherViewController.swift */,
-				2A1D15C32ADE6EA700FB5B9F /* PageNavigationController.swift */,
-				2A1D15CB2AEA8A8000FB5B9F /* WeatherDetailFirstViewController.swift */,
-				2A1D15C72AEA89CF00FB5B9F /* WeatherDetailSecondViewController.swift */,
-				2A1D15C92AEA89F700FB5B9F /* WeatherDetailThirdViewController.swift */,
+				2A1D15CD2AEA8F4800FB5B9F /* Main */,
+				2A1D15CE2AEA8F5100FB5B9F /* Detail */,
 			);
 			path = SecondSeminar;
 			sourceTree = "<group>";
@@ -268,6 +287,7 @@
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,
 				2A1D15B22ADE530500FB5B9F /* UIImage+.swift in Sources */,
 				2A1D15AF2ADE52A500FB5B9F /* ImageLiterals.swift in Sources */,
+				2A1D15D02AEA8F8300FB5B9F /* StringLiterals.swift in Sources */,
 				2A1D15A92ADE4FD900FB5B9F /* UIView+.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

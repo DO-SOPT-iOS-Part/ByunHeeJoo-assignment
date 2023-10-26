@@ -47,7 +47,7 @@ final class WeatherViewController: UIViewController {
         }
         
         titleLabel.do {
-            $0.text = "날씨"
+            $0.text = StringLiterals.main.firstWeather.title
             $0.textColor = .white
             $0.font = .displayBold(ofSize: 36)
         }
@@ -60,31 +60,31 @@ final class WeatherViewController: UIViewController {
         }
         
         myPlaceLabel.do {
-            $0.text = "나의 위치"
+            $0.text = StringLiterals.main.firstWeather.myPlace
             $0.textColor = .white
             $0.font = .displayBold(ofSize: 24)
         }
         
         firstPlaceLabel.do {
-            $0.text = "의정부시"
+            $0.text = StringLiterals.main.firstWeather.firstPlace
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 17)
         }
         
         firstWeatherLabel.do {
-            $0.text = "흐림"
+            $0.text = StringLiterals.main.firstWeather.firstWeather
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 16)
         }
         
         firstTemperatureLabel.do {
-            $0.text = "21°"
+            $0.text = StringLiterals.main.firstWeather.firstTemperature
             $0.textColor = .white
             $0.font = .displayLight(ofSize: 52)
         }
         
         firstHighLowTemperatureLabel.do {
-            $0.text = "최고:29°  최저:15°"
+            $0.text = StringLiterals.main.firstWeather.firstHighLowTemperature
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 15)
         }
