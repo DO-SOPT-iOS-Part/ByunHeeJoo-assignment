@@ -223,6 +223,5 @@ final class WeatherDetailViewController: UIViewController {
     @objc
     func popButtonTapped() {
         self.navigationController?.popViewController(animated: true)
-        
     }
 }

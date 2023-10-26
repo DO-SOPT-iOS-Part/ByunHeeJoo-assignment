@@ -112,6 +112,17 @@ final class WeatherViewController: UIViewController {
             $0.bottom.equalToSuperview()
         }
     }
+    
+    func resetMyView() {
+        myView.setView()
+        myScrollView.addSubview(myView)
+        myView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(169.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+            $0.height.equalTo(950.adjusted)
+            $0.bottom.equalToSuperview()
+        }
+    }
 }
 
 extension WeatherViewController: BackGroundButtonAction {
@@ -124,6 +135,9 @@ extension WeatherViewController: BackGroundButtonAction {
         }
         self.navigationController?.isNavigationBarHidden = true
         self.navigationController?.pushViewController(viewController, animated: true)
+        realPageIndex = -1
+        searchBar.text = ""
+        resetMyView()
     }
 }
 
@@ -147,14 +161,7 @@ extension WeatherViewController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
-            myView.setView()
-            myScrollView.addSubview(myView)
-            myView.snp.makeConstraints {
-                $0.top.equalToSuperview().inset(169.adjusted)
-                $0.leading.trailing.equalToSuperview().inset(20.adjusted)
-                $0.height.equalTo(950.adjusted)
-                $0.bottom.equalToSuperview()
-            }
+            resetMyView()
         }
     }
 }
