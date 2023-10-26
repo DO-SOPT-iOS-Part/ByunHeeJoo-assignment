@@ -11,12 +11,20 @@ import SnapKit
 import Then
 
 final class PageNavigationController: UIViewController {
-    
+        
     private lazy var dataViewControllers: [UIViewController] = {
-        let firtstVC = WeatherDetailFirstViewController()
-        let secondVC = WeatherDetailSecondViewController()
-        let thirdDVC = WeatherDetailThirdViewController()
-        return [firtstVC, secondVC,thirdDVC]
+        var viewControllers: [WeatherDetailViewController] = []
+
+        for dummy in Weather.dummy() {
+            let vc = WeatherDetailViewController()
+            vc.placeLabel.text = dummy.place
+            vc.temperatureLabel.text = dummy.temperature
+            vc.weatherLabel.text = dummy.weather
+            vc.highLowTemperatureLabel.text = dummy.highLowTemperature
+            viewControllers.append(vc)
+        }
+        
+        return viewControllers
     }()
     
     private lazy var pageViewController: UIPageViewController = {

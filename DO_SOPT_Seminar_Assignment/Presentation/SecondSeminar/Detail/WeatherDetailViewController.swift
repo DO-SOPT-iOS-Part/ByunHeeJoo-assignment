@@ -10,21 +10,21 @@ import UIKit
 import SnapKit
 import Then
 
-final class WeatherDetailFirstViewController: UIViewController {
+final class WeatherDetailViewController: UIViewController {
 
     private let myScrollView = UIScrollView()
     private var contentView = UIView()
     
     private let backGroundImage = UIImageView()
     
-    private let firstPlaceLabel = UILabel()
-    private let firstWeatherLabel = UILabel()
-    private let firstTemperatureLabel = UILabel()
-    private let firstHighLowTemperatureLabel = UILabel()
+    let placeLabel = UILabel()
+    let weatherLabel = UILabel()
+    let temperatureLabel = UILabel()
+    let highLowTemperatureLabel = UILabel()
     
     private let timeLineBorder = UIView()
     private let discriptionLabel = UILabel()
-    private let weatherScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 1000, height: 0))
+    private let weatherScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 810, height: 0))
     private let weatherContentView = WeatherContentView()
     
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
@@ -51,26 +51,22 @@ final class WeatherDetailFirstViewController: UIViewController {
             $0.image = ImageLiterals.imgBackGround.imgFullBackground
         }
         
-        firstPlaceLabel.do {
-            $0.text = StringLiterals.firstWeather.firstPlace
+        placeLabel.do {
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 36)
         }
         
-        firstWeatherLabel.do {
-            $0.text = StringLiterals.firstWeather.firstWeather
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 24)
-        }
-        
-        firstTemperatureLabel.do {
-            $0.text = StringLiterals.firstWeather.firstTemperature
+        temperatureLabel.do {
             $0.textColor = .white
             $0.font = .displayThin(ofSize: 102)
         }
         
-        firstHighLowTemperatureLabel.do {
-            $0.text = StringLiterals.firstWeather.firstHighLowTemperature
+        weatherLabel.do {
+            $0.textColor = .white
+            $0.font = .displayMedium(ofSize: 24)
+        }
+        
+        highLowTemperatureLabel.do {
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 20)
         }
@@ -81,7 +77,7 @@ final class WeatherDetailFirstViewController: UIViewController {
         }
         
         discriptionLabel.do {
-            $0.text = StringLiterals.firstWeather.discription
+            $0.text = StringLiterals.information.discription
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 18)
             $0.numberOfLines = 2
@@ -121,10 +117,10 @@ final class WeatherDetailFirstViewController: UIViewController {
         myScrollView.addSubview(contentView)
         
         contentView.addSubviews(backGroundImage,
-                                firstPlaceLabel,
-                                firstWeatherLabel,
-                                firstTemperatureLabel,
-                                firstHighLowTemperatureLabel,
+                                placeLabel,
+                                weatherLabel,
+                                temperatureLabel,
+                                highLowTemperatureLabel,
                                 timeLineBorder,
                                 divisionLine,
                                 mapButton,
@@ -147,22 +143,22 @@ final class WeatherDetailFirstViewController: UIViewController {
             $0.height.equalToSuperview()
         }
         
-        firstPlaceLabel.snp.makeConstraints {
+        placeLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
             $0.centerX.equalToSuperview()
         }
 
-        firstTemperatureLabel.snp.makeConstraints {
+        temperatureLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(76.adjusted)
             $0.centerX.equalToSuperview()
         }
         
-        firstWeatherLabel.snp.makeConstraints {
+        weatherLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(188.adjusted)
             $0.centerX.equalToSuperview()
         }
         
-        firstHighLowTemperatureLabel.snp.makeConstraints {
+        highLowTemperatureLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).inset(222.adjusted)
             $0.centerX.equalToSuperview()
         }
@@ -180,7 +176,7 @@ final class WeatherDetailFirstViewController: UIViewController {
         }
         
         weatherContentView.snp.makeConstraints {
-            $0.edges.height.equalToSuperview()
+            $0.edges.equalToSuperview()
             $0.width.equalTo(810.adjusted)
             $0.height.equalTo(146.adjusted)
         }
