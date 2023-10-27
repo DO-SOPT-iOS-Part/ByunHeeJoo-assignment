@@ -12,15 +12,20 @@ import Then
 
 final class WeatherViewController: UIViewController {
     
-    private let dummy = Weather.dummy()
-    private var realPageIndex = -1
+    private let dummy = Weather.dummy() // 구조체 정보 불러오기
+    private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
+    
+    // MARK: - UI Component
+    
     private let myScrollView = UIScrollView(frame: CGRect(x: 0, y: 0, width: 0, height: 1700))
     
     private let moreButton = UIButton()
     private let titleLabel = UILabel()
     private let searchBar = UISearchBar()
     
-    private let myView = WeatherStackView()
+    private let myView = WeatherView()
+    
+    // MARK: - Life Cycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +33,8 @@ final class WeatherViewController: UIViewController {
         setStyle()
         setLayout()
     }
+    
+    // MARK: - UI Style
     
     private func setStyle() {
         view.backgroundColor = .black
@@ -74,6 +81,8 @@ final class WeatherViewController: UIViewController {
         
     }
     
+    // MARK: - UI Layout
+    
     private func setLayout() {
         view.addSubview(myScrollView)
         
@@ -113,6 +122,8 @@ final class WeatherViewController: UIViewController {
         }
     }
     
+    // MARK: - Layout RemakeConstraints
+    
     func resetMyView() {
         myView.setView()
         myScrollView.addSubview(myView)
@@ -124,6 +135,9 @@ final class WeatherViewController: UIViewController {
         }
     }
 }
+
+
+// MARK: - Delegate Protocol
 
 extension WeatherViewController: BackGroundButtonAction {
     func backGroundTapped(index: Int) {
@@ -140,6 +154,8 @@ extension WeatherViewController: BackGroundButtonAction {
         resetMyView()
     }
 }
+
+// MARK: - UISearchBarDelegate
 
 extension WeatherViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

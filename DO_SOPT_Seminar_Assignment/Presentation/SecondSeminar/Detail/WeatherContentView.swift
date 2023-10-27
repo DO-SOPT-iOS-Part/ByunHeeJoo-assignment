@@ -11,7 +11,7 @@ import SnapKit
 import Then
 
 final class WeatherContentView: UIView {
-    private let dummy = WeatherDetail.dummy()
+    private let dummy = WeatherDetail.dummy() // 구조체 정보 불러오기
     
     override init(frame: CGRect) {
         super.init(frame: frame)

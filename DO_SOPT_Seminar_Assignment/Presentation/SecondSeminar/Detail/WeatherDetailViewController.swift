@@ -12,6 +12,8 @@ import Then
 
 final class WeatherDetailViewController: UIViewController {
 
+    // MARK: - UI Component
+    
     private let myScrollView = UIScrollView()
     private var contentView = UIView()
     
@@ -33,12 +35,17 @@ final class WeatherDetailViewController: UIViewController {
     private let arrowImage = UIImageView()
     private let dotImage = UIImageView()
 
+    
+    // MARK: - Life Cylce
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setStyle()
         setLayout()
     }
+    
+    // MARK: - UI Style
     
     private func setStyle() {
         myScrollView.do {
@@ -112,6 +119,8 @@ final class WeatherDetailViewController: UIViewController {
         }
     }
     
+    // MARK: - UI Layout
+
     private func setLayout() {
         view.addSubview(myScrollView)
         myScrollView.addSubview(contentView)

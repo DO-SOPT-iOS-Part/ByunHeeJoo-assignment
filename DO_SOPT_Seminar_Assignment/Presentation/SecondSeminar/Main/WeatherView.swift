@@ -10,14 +10,40 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Delegate Protocol
+
 protocol BackGroundButtonAction: AnyObject {
     func backGroundTapped(index: Int)
 }
 
-final class WeatherStackView: UIView {
+final class WeatherView: UIView {
     
-    private let dummy = Weather.dummy()
+    private let dummy = Weather.dummy() // 구조체 정보 불러오기
     weak var delegate: BackGroundButtonAction?
+    
+    // MARK: - UI Component
+    
+    private var basePlaceView: UIView {
+        let view = UIView()
+        return view
+    }
+    
+    private var basePlaceViewBackground: UIButton {
+        let button = UIButton()
+        button.setImage(ImageLiterals.imgBackGround.imgQuarterBackground, for: .normal)
+        button.contentVerticalAlignment = .fill
+        button.contentHorizontalAlignment = .fill
+        button.addTarget(self, action: #selector(backGroundTapped), for: .touchUpInside)
+        return button
+    }
+    
+    private func baseLabel(withText text: String, font: UIFont, textColor: UIColor = .white) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.textColor = textColor
+        label.font = font
+        return label
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,55 +55,22 @@ final class WeatherStackView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - 기본 View 설정 함수
+    
     func setView() {
         var placeViewTopInset = 0
         
         for i in 0..<7 {
-            let placeView = UIView()
-            let placeViewBackGround = UIButton()
-            let myPlaceLabel = UILabel()
-            let placeLabel = UILabel()
-            let weatherLabel = UILabel()
-            let temperatureLabel = UILabel()
-            let highLowTemperatureLabel = UILabel()
-                        
-            placeViewBackGround.do {
-                $0.tag = i
-                $0.setImage(ImageLiterals.imgBackGround.imgQuarterBackground, for: .normal)
-                $0.contentVerticalAlignment = .fill
-                $0.contentHorizontalAlignment = .fill
-                $0.addTarget(self, action: #selector(backGroundTapped), for: .touchUpInside)
-            }
+            let placeView = basePlaceView
+            let placeViewBackGround = basePlaceViewBackground
             
-            myPlaceLabel.do {
-                $0.text = StringLiterals.information.myPlace
-                $0.textColor = .white
-                $0.font = .displayBold(ofSize: 24)
-            }
+            let myPlaceLabel = baseLabel(withText: StringLiterals.information.myPlace, font: .displayBold(ofSize: 24))
+            let placeLabel = baseLabel(withText: dummy[i].place, font: .displayMedium(ofSize: 17))
+            let weatherLabel = baseLabel(withText: dummy[i].weather, font: .displayMedium(ofSize: 16))
+            let temperatureLabel = baseLabel(withText: dummy[i].temperature, font: .displayLight(ofSize: 52))
+            let highLowTemperatureLabel = baseLabel(withText: dummy[i].highLowTemperature, font: .displayMedium(ofSize: 15))
             
-            placeLabel.do {
-                $0.text = dummy[i].place
-                $0.textColor = .white
-                $0.font = .displayMedium(ofSize: 17)
-            }
-            
-            weatherLabel.do {
-                $0.text = dummy[i].weather
-                $0.textColor = .white
-                $0.font = .displayMedium(ofSize: 16)
-            }
-            
-            temperatureLabel.do {
-                $0.text = dummy[i].temperature
-                $0.textColor = .white
-                $0.font = .displayLight(ofSize: 52)
-            }
-            
-            highLowTemperatureLabel.do {
-                $0.text = dummy[i].highLowTemperature
-                $0.textColor = .white
-                $0.font = .displayMedium(ofSize: 15)
-            }
+            placeViewBackGround.tag = i
             
             addSubview(placeView)
             
@@ -93,7 +86,7 @@ final class WeatherStackView: UIView {
                 $0.leading.trailing.equalToSuperview()
                 $0.height.equalTo(117)
             }
-  
+            
             placeViewBackGround.snp.makeConstraints {
                 $0.edges.equalToSuperview()
             }
@@ -127,52 +120,25 @@ final class WeatherStackView: UIView {
         }
     }
     
+    // MARK: - 검색한 view만 보이게 하는 함수
+    
     func showOnlyOneView(_ index: Int) {
         self.subviews.forEach { $0.removeFromSuperview() }
-
-        let placeView = UIView()
-        let placeViewBackGround = UIButton()
-        let myPlaceLabel = UILabel()
-        let placeLabel = UILabel()
-        let weatherLabel = UILabel()
-        let temperatureLabel = UILabel()
-        let highLowTemperatureLabel = UILabel()
+        
+        let placeView = basePlaceView
+        let placeViewBackGround = basePlaceViewBackground
+        
+        let myPlaceLabel = baseLabel(withText: StringLiterals.information.myPlace, font: .displayBold(ofSize: 24))
+        let placeLabel = baseLabel(withText: dummy[index].place, font: .displayMedium(ofSize: 17))
+        let weatherLabel = baseLabel(withText: dummy[index].weather, font: .displayMedium(ofSize: 16))
+        let temperatureLabel = baseLabel(withText: dummy[index].temperature, font: .displayLight(ofSize: 52))
+        let highLowTemperatureLabel = baseLabel(withText: dummy[index].highLowTemperature, font: .displayMedium(ofSize: 15))
         
         placeViewBackGround.do {
             $0.setImage(ImageLiterals.imgBackGround.imgQuarterBackground, for: .normal)
             $0.contentVerticalAlignment = .fill
             $0.contentHorizontalAlignment = .fill
             $0.addTarget(self, action: #selector(backGroundTapped), for: .touchUpInside)
-        }
-        
-        myPlaceLabel.do {
-            $0.text = StringLiterals.information.myPlace
-            $0.textColor = .white
-            $0.font = .displayBold(ofSize: 24)
-        }
-        
-        placeLabel.do {
-            $0.text = dummy[index].place
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 17)
-        }
-        
-        weatherLabel.do {
-            $0.text = dummy[index].weather
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 16)
-        }
-        
-        temperatureLabel.do {
-            $0.text = dummy[index].temperature
-            $0.textColor = .white
-            $0.font = .displayLight(ofSize: 52)
-        }
-        
-        highLowTemperatureLabel.do {
-            $0.text = dummy[index].highLowTemperature
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 15)
         }
         
         addSubview(placeView)
@@ -189,7 +155,7 @@ final class WeatherStackView: UIView {
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(117)
         }
-
+        
         placeViewBackGround.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
@@ -221,10 +187,11 @@ final class WeatherStackView: UIView {
         
     }
     
+    // MARK: - 뷰 클릭 objc func
+    
     @objc func
     backGroundTapped(sender: UIButton) {
         let tappedIndex = sender.tag
         delegate?.backGroundTapped(index: tappedIndex)
     }
 }
-

@@ -10,13 +10,15 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - PageViewController
+
 final class PageNavigationController: UIViewController {
     
     var pageIndex = 0
     
     private lazy var dataViewControllers: [UIViewController] = {
         var viewControllers: [WeatherDetailViewController] = []
-
+        
         for dummy in Weather.dummy() {
             let vc = WeatherDetailViewController()
             vc.placeLabel.text = dummy.place
@@ -44,10 +46,8 @@ final class PageNavigationController: UIViewController {
     }
     
     private func setStyle() {
-        
-        print(pageIndex)
         let startingViewController = dataViewControllers[pageIndex]
-            pageViewController.setViewControllers([startingViewController], direction: .forward, animated: false, completion: nil)
+        pageViewController.setViewControllers([startingViewController], direction: .forward, animated: false, completion: nil)
     }
     
     private func setLayout() {
