@@ -75,9 +75,9 @@ final class WeatherViewController: UIViewController {
             }
         }
         
-        myView.do {
-            $0.delegate = self
-        }
+//        myView.do {
+//            $0.delegate = self
+//        }
         
     }
     

@@ -12,14 +12,14 @@ import Then
 
 // MARK: - Delegate Protocol
 
-protocol BackGroundButtonAction: AnyObject {
-    func backGroundTapped(index: Int)
-}
+//protocol BackGroundButtonAction: AnyObject {
+//    func backGroundTapped(index: Int)
+//}
 
 final class WeatherView: UIView {
     
     private let dummy = Weather.dummy() // 구조체 정보 불러오기
-    weak var delegate: BackGroundButtonAction?
+//    weak var delegate: BackGroundButtonAction?
     
     // MARK: - UI Component
     
@@ -192,6 +192,6 @@ final class WeatherView: UIView {
     @objc func
     backGroundTapped(sender: UIButton) {
         let tappedIndex = sender.tag
-        delegate?.backGroundTapped(index: tappedIndex)
+//        delegate?.backGroundTapped(index: tappedIndex)
     }
 }
