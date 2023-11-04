@@ -219,7 +219,7 @@ extension MainWeatherViewController: UISearchBarDelegate, UISearchControllerDele
 
 extension MainWeatherViewController: ButtonTouchnAction {
     func backGroundTapped(index: Int) {
-        let viewController = PageNavigationController()
+        let viewController = WeatherPageViewController()
         if realPageIndex != -1 {
             viewController.pageIndex = realPageIndex
         } else {
