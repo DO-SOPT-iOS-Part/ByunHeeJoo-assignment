@@ -12,7 +12,8 @@ import Then
 
 final class WeatherPageDetailViewController: UIViewController {
     
-    private let dummy = WeatherDetail.dummy()
+    private let firstDummy = WeatherDetail.dummy()
+    private let secondDummy = WeatherDetailOfWeek.dummy()
 
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
@@ -74,12 +75,14 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
             $0.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
             $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
+            $0.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.className)
             $0.delegate = self
             $0.dataSource = self
         }
         
         layout.do {
-            $0.register(BackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
+            $0.register(FirstBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
+            $0.register(SecondBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionTwoBackground")
         }
         
         divisionLine.do {
@@ -210,11 +213,13 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         switch sectionType {
         case .dayOfWeather:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayOfWeatherCollectionViewCell.className, for: indexPath) as? DayOfWeatherCollectionViewCell else { return UICollectionViewCell() }
-            let weatherDetail = dummy[indexPath.row]
+            let weatherDetail = firstDummy[indexPath.row]
             cell.configureCell(weather: weatherDetail)
             return cell
         case .weekOfWeather:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeekOfWeatherCollectionViewCell.className, for: indexPath) as? WeekOfWeatherCollectionViewCell else { return UICollectionViewCell() }
+            let weatherWeekDetail = secondDummy[indexPath.row]
+            cell.configureCell(weather: weatherWeekDetail)
             return cell
         }
     }
@@ -225,9 +230,11 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
             header.configureHeader(text: HeaderText.dummy()[indexPath.row])
             return header
+        case UICollectionView.elementKindSectionFooter:
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterCollectionReusableView.className, for: indexPath)
+            return footer
         default:
             return UICollectionReusableView()
         }
     }
-
 }

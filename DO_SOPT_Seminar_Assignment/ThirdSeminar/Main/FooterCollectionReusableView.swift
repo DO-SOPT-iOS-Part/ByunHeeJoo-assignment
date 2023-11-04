@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class MainFooterCollectionReusableView: UICollectionReusableView {
+final class FooterCollectionReusableView: UICollectionReusableView {
     private let footerView = UIView()
     
     override init(frame: CGRect) {

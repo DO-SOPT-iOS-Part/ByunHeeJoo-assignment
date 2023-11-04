@@ -100,7 +100,7 @@ final class MainWeatherViewController: UIViewController {
             $0.alwaysBounceVertical = true
             $0.isUserInteractionEnabled = true
             $0.register(MainWeatherCollectionViewCell.self, forCellWithReuseIdentifier: MainWeatherCollectionViewCell.className)
-            $0.register(MainFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MainFooterCollectionReusableView.className)
+            $0.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.className)
             $0.delegate = self
             $0.dataSource = self
         }
@@ -164,7 +164,7 @@ extension MainWeatherViewController: UICollectionViewDelegate, UICollectionViewD
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
-            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: MainFooterCollectionReusableView.className, for: indexPath)
+            let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterCollectionReusableView.className, for: indexPath)
             return footer
         } else {
             return UICollectionReusableView()

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A10108F2AF4FD390005DEE7 /* NSObject+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10108E2AF4FD390005DEE7 /* NSObject+.swift */; };
-		2A1010962AF534400005DEE7 /* MainFooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010932AF534400005DEE7 /* MainFooterCollectionReusableView.swift */; };
+		2A1010962AF534400005DEE7 /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010932AF534400005DEE7 /* FooterCollectionReusableView.swift */; };
 		2A1010972AF534400005DEE7 /* MainWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */; };
 		2A1010982AF534400005DEE7 /* MainWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */; };
 		2A10109A2AF53F190005DEE7 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010992AF53F190005DEE7 /* UILabel+.swift */; };
@@ -48,12 +48,14 @@
 		2A9E85E52ACD679800D22C16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E42ACD679800D22C16 /* Assets.xcassets */; };
 		2A9E85E82ACD679800D22C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E62ACD679800D22C16 /* LaunchScreen.storyboard */; };
 		2AFBEAE12AF6734E0012CEC3 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE02AF6734E0012CEC3 /* HeaderText.swift */; };
-		2AFBEAE42AF675710012CEC3 /* BackgroundCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE32AF675710012CEC3 /* BackgroundCollectionReusableView.swift */; };
+		2AFBEAE42AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE32AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift */; };
+		2AFBEAE62AF68A2E0012CEC3 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE52AF68A2E0012CEC3 /* UIColor+.swift */; };
+		2AFBEAE82AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE72AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2A10108E2AF4FD390005DEE7 /* NSObject+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+.swift"; sourceTree = "<group>"; };
-		2A1010932AF534400005DEE7 /* MainFooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainFooterCollectionReusableView.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/MainFooterCollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
+		2A1010932AF534400005DEE7 /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FooterCollectionReusableView.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/FooterCollectionReusableView.swift; sourceTree = SOURCE_ROOT; };
 		2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWeatherCollectionViewCell.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/MainWeatherCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWeatherViewController.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/MainWeatherViewController.swift; sourceTree = SOURCE_ROOT; };
 		2A1010992AF53F190005DEE7 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
@@ -93,7 +95,9 @@
 		2A9E85E72ACD679800D22C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9E85E92ACD679800D22C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2AFBEAE02AF6734E0012CEC3 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
-		2AFBEAE32AF675710012CEC3 /* BackgroundCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundCollectionReusableView.swift; sourceTree = "<group>"; };
+		2AFBEAE32AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstBackgroundCollectionReusableView.swift; sourceTree = "<group>"; };
+		2AFBEAE52AF68A2E0012CEC3 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
+		2AFBEAE72AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondBackgroundCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +243,7 @@
 				2A1D15D72AEABA0B00FB5B9F /* Adjust+.swift */,
 				2A10108E2AF4FD390005DEE7 /* NSObject+.swift */,
 				2A1010992AF53F190005DEE7 /* UILabel+.swift */,
+				2AFBEAE52AF68A2E0012CEC3 /* UIColor+.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -278,7 +283,7 @@
 				2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */,
 				2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */,
 				2A10109B2AF551290005DEE7 /* NotingView.swift */,
-				2A1010932AF534400005DEE7 /* MainFooterCollectionReusableView.swift */,
+				2A1010932AF534400005DEE7 /* FooterCollectionReusableView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -313,7 +318,8 @@
 		2AFBEAE22AF675510012CEC3 /* Background */ = {
 			isa = PBXGroup;
 			children = (
-				2AFBEAE32AF675710012CEC3 /* BackgroundCollectionReusableView.swift */,
+				2AFBEAE32AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift */,
+				2AFBEAE72AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift */,
 			);
 			path = Background;
 			sourceTree = "<group>";
@@ -406,7 +412,7 @@
 				2A1D15CC2AEA8A8000FB5B9F /* WeatherDetailViewController.swift in Sources */,
 				2A1D15DC2AEACAE900FB5B9F /* Weather.swift in Sources */,
 				2A1D15A72ADE4D5300FB5B9F /* UIFont+.swift in Sources */,
-				2A1010962AF534400005DEE7 /* MainFooterCollectionReusableView.swift in Sources */,
+				2A1010962AF534400005DEE7 /* FooterCollectionReusableView.swift in Sources */,
 				2A10108F2AF4FD390005DEE7 /* NSObject+.swift in Sources */,
 				2A1D15D42AEAAE8A00FB5B9F /* WeatherContentView.swift in Sources */,
 				2A10109A2AF53F190005DEE7 /* UILabel+.swift in Sources */,
@@ -420,12 +426,14 @@
 				2A1010A42AF602540005DEE7 /* MySection.swift in Sources */,
 				2A10109F2AF5F6F50005DEE7 /* WeatherPageViewController.swift in Sources */,
 				2A10109C2AF551290005DEE7 /* NotingView.swift in Sources */,
-				2AFBEAE42AF675710012CEC3 /* BackgroundCollectionReusableView.swift in Sources */,
+				2AFBEAE42AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift in Sources */,
 				2A1010982AF534400005DEE7 /* MainWeatherViewController.swift in Sources */,
 				2A1010B32AF612FE0005DEE7 /* LayoutFactory.swift in Sources */,
 				2A1010AC2AF6096E0005DEE7 /* WeekOfWeatherCollectionViewCell.swift in Sources */,
+				2AFBEAE82AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift in Sources */,
 				2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */,
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,
+				2AFBEAE62AF68A2E0012CEC3 /* UIColor+.swift in Sources */,
 				2A1010AE2AF60A340005DEE7 /* WeatherDetailHeaderCollectionReusableView.swift in Sources */,
 				2A1010AA2AF609620005DEE7 /* DayOfWeatherCollectionViewCell.swift in Sources */,
 				2A1D15B22ADE530500FB5B9F /* UIImage+.swift in Sources */,

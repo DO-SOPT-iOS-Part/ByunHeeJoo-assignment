@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Then
 
-final class BackgroundCollectionReusableView: UICollectionReusableView {
+final class FirstBackgroundCollectionReusableView: UICollectionReusableView {
     private let backgroundView = UIView()
 
     override init(frame: CGRect) {
@@ -23,7 +23,8 @@ final class BackgroundCollectionReusableView: UICollectionReusableView {
         addSubview(backgroundView)
 
         backgroundView.snp.makeConstraints {
-            $0.top.leading.trailing.bottom.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(212.adjusted)
         }
     }
 

@@ -11,17 +11,20 @@ enum LayoutFactory {
     
     //MARK: - 섹션별로 다른 SectionLayout 생성
     static func create() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { (sectionNumber, _) -> NSCollectionLayoutSection? in
+        return UICollectionViewCompositionalLayout { (sectionNumber, environment) -> NSCollectionLayoutSection? in
             let section: NSCollectionLayoutSection
             
             switch sectionNumber {
             case 0:
                 section = createScrollSection()
             case 1:
-                section = createGridSection()
+                section = createVerticalSection()
             default:
                 section = createScrollSection()
             }
+            
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 20.adjusted, trailing: 0)
+
             return section
         }
     }
@@ -32,7 +35,7 @@ enum LayoutFactory {
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
         section.interGroupSpacing = 22.adjusted
-        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 22.adjusted)
         section.boundarySupplementaryItems = [self.createSupplementaryHeaderItem()]
         section.supplementaryContentInsetsReference = .layoutMargins
         // Background
@@ -41,36 +44,21 @@ enum LayoutFactory {
         return section
     }
     
-    static func createGridSection() -> NSCollectionLayoutSection {
-        let itemSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1/3),
-            heightDimension: .fractionalWidth(1/2)
-        )
-        
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = .init(
-            top: 3,
-            leading: 3,
-            bottom: 3,
-            trailing: 3
-        )
-        
-        let groupSize = NSCollectionLayoutSize(
-            widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalWidth(1/2)
-        )
-        
-        let group = NSCollectionLayoutGroup.horizontal(
-            layoutSize: groupSize,
-            subitems: [item]
-        )
-        
-        let containerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(1))
-        
-        let containerGroup = NSCollectionLayoutGroup.vertical(layoutSize: containerGroupSize, subitems: [group, group])
-        
-        let section = NSCollectionLayoutSection(group: containerGroup)
-        
+    static func createVerticalSection() -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/11)))
+        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .absolute(335.adjusted), heightDimension: .absolute(643.adjusted)), subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
+        section.interGroupSpacing = 0
+        section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.boundarySupplementaryItems = [
+                self.createSupplementaryHeaderItem(),
+                self.createSupplementaryFooterItem()
+            ]
+        section.supplementaryContentInsetsReference = .layoutMargins
+        // Background
+        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionTwoBackground")
+        section.decorationItems = [sectionBackgroundDecoration]
         return section
     }
     
@@ -78,6 +66,11 @@ enum LayoutFactory {
         let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(66.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         headerElement.pinToVisibleBounds = true
         return headerElement
+    }
+    
+    static func createSupplementaryFooterItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let footerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40.adjusted)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+        return footerElement
     }
     
 }

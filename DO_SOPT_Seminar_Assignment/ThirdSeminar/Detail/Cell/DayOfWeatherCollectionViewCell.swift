@@ -14,9 +14,9 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
     
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
 
-    let timeLabel = UILabel()
-    let weatherImage = UIImageView()
-    let temperatureLabel = UILabel()
+    private let timeLabel = UILabel()
+    private let weatherImage = UIImageView()
+    private let temperatureLabel = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -63,11 +63,6 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(21.adjusted)
         }
         
-    }
-    
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        configureCell(weather: .init(time: "", weather: UIImage(), temperature: ""))
     }
     
     func configureCell(weather: WeatherDetail) {
