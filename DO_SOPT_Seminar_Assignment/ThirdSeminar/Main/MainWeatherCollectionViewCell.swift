@@ -25,7 +25,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     private let weatherLabel = UILabel()
     private let temperatureLabel = UILabel()
     private let highLowTemperatureLabel = UILabel()
-    
+    private var cellIndex = 0
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -39,7 +40,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        configureCell(weather: .init(place: "", weather: "", temperature: "", highLowTemperature: ""))
+        configureCell(weather: .init(place: "", weather: "", temperature: "", highLowTemperature: ""), row: 0)
     }
     
     private func setStyle() {
@@ -122,17 +123,17 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
-    func configureCell(weather: Weather) {
+    func configureCell(weather: Weather, row: Int) {
         placeLabel.text = weather.place
         weatherLabel.text = weather.weather
         temperatureLabel.text = weather.temperature
         highLowTemperatureLabel.text = weather.highLowTemperature
+        cellIndex = row
     }
     
     @objc func
     backGroundTapped(sender: UIButton) {
-        let tappedIndex = sender.tag
-        delegate?.backGroundTapped(index: tappedIndex)
+        delegate?.backGroundTapped(index: cellIndex)
     }
     
 }

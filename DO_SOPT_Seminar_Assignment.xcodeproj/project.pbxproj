@@ -12,6 +12,7 @@
 		2A1010972AF534400005DEE7 /* MainWeatherCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */; };
 		2A1010982AF534400005DEE7 /* MainWeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */; };
 		2A10109A2AF53F190005DEE7 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1010992AF53F190005DEE7 /* UILabel+.swift */; };
+		2A10109C2AF551290005DEE7 /* NotingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A10109B2AF551290005DEE7 /* NotingView.swift */; };
 		2A1D159D2ADE4C7F00FB5B9F /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A1D159C2ADE4C7F00FB5B9F /* SF-Pro-Display-Light.otf */; };
 		2A1D159F2ADE4C8A00FB5B9F /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A1D159E2ADE4C8A00FB5B9F /* SF-Pro-Display-Medium.otf */; };
 		2A1D15A12ADE4C9100FB5B9F /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2A1D15A02ADE4C9100FB5B9F /* SF-Pro-Display-Regular.otf */; };
@@ -46,6 +47,7 @@
 		2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWeatherCollectionViewCell.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/MainWeatherCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainWeatherViewController.swift; path = DO_SOPT_Seminar_Assignment/ThirdSeminar/Main/MainWeatherViewController.swift; sourceTree = SOURCE_ROOT; };
 		2A1010992AF53F190005DEE7 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		2A10109B2AF551290005DEE7 /* NotingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotingView.swift; path = DO_SOPT_Seminar_Assignment/Global/Extensions/NotingView.swift; sourceTree = SOURCE_ROOT; };
 		2A1D159C2ADE4C7F00FB5B9F /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		2A1D159E2ADE4C8A00FB5B9F /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
 		2A1D15A02ADE4C9100FB5B9F /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				2A1010932AF534400005DEE7 /* MainFooterCollectionReusableView.swift */,
 				2A1010942AF534400005DEE7 /* MainWeatherCollectionViewCell.swift */,
 				2A1010952AF534400005DEE7 /* MainWeatherViewController.swift */,
+				2A10109B2AF551290005DEE7 /* NotingView.swift */,
 			);
 			name = Main;
 			path = "ㅡ먀ㅜ";
@@ -343,6 +346,7 @@
 				2A1D15DA2AEACA6400FB5B9F /* WeatherView.swift in Sources */,
 				2A1D15D22AEAA3A200FB5B9F /* CALayer+.swift in Sources */,
 				2A1D15D82AEABA0B00FB5B9F /* Adjust+.swift in Sources */,
+				2A10109C2AF551290005DEE7 /* NotingView.swift in Sources */,
 				2A1010982AF534400005DEE7 /* MainWeatherViewController.swift in Sources */,
 				2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */,
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,

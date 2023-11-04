@@ -42,7 +42,13 @@ final class PageNavigationController: UIViewController {
         setStyle()
         setLayout()
         setDelegate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        self.navigationController?.navigationBar.isHidden = true
+        self.navigationItem.hidesBackButton = true
     }
     
     private func setStyle() {

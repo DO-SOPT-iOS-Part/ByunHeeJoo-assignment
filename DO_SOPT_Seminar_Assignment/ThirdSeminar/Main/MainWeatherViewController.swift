@@ -13,6 +13,9 @@ import Then
 final class MainWeatherViewController: UIViewController {
 
     private let dummy = Weather.dummy()
+    private var array: [String] = []
+    private var filteredArray: [String] = []
+    private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
     
     private let mainSearchController = UISearchController(searchResultsController: nil)
     private let moreButton = UIButton()
@@ -20,12 +23,28 @@ final class MainWeatherViewController: UIViewController {
                                                        collectionViewLayout: flowLayout)
     private let flowLayout = UICollectionViewFlowLayout()
     
+    private var isFiltering: Bool {
+        let searchController = self.navigationItem.searchController
+        let isActive = searchController?.isActive ?? false
+        let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
+        return isActive && isSearchBarHasText
+    }
+    private let notingView = NotingView()
+    private let discriptionLabel = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setNavigationBar()
         setStyle()
         setLayout()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.hidesBackButton = true
     }
     
     private func setNavigationBar() {
@@ -39,18 +58,34 @@ final class MainWeatherViewController: UIViewController {
     }
     
     private func setStyle() {
+        for i in 0..<dummy.count {
+            array.append(dummy[i].place)
+        }
+        
         mainSearchController.do {
+            $0.searchResultsUpdater = self
             let attributedString = NSMutableAttributedString(string: "도시 또는 공항 검색", attributes: [
                    NSAttributedString.Key.font: UIFont(name: "SFProDisplay-Medium", size: 19) as Any,
                    NSAttributedString.Key.foregroundColor: UIColor(white: 255/255, alpha: 0.5)
                ])
             $0.searchBar.searchTextField.attributedPlaceholder = attributedString
-            $0.automaticallyShowsCancelButton = false
+            $0.automaticallyShowsCancelButton = true
             if let searchIconView = $0.searchBar.searchTextField.leftView as? UIImageView {
                     searchIconView.image = searchIconView.image?.withRenderingMode(.alwaysTemplate)
                     searchIconView.tintColor = UIColor(white: 255/255, alpha: 0.5)
             }
+            // clear 버튼 색 변경
+            if let button = $0.searchBar.searchTextField.value(forKey: "_clearButton") as? UIButton {
+                let templateImage = button.imageView?.image?.withRenderingMode(.alwaysTemplate)
+                button.setImage(templateImage, for: .normal)
+                button.tintColor = .systemGray
+            }
+            $0.searchBar.setValue("취소", forKey: "cancelButtonText")
+            $0.searchBar.tintColor = .white
+            $0.searchBar.searchTextField.textColor = .white
             $0.searchBar.searchTextField.backgroundColor = UIColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)
+            $0.searchBar.delegate = self
+            $0.delegate = self
         }
         
         moreButton.do {
@@ -63,6 +98,7 @@ final class MainWeatherViewController: UIViewController {
             $0.showsVerticalScrollIndicator = false
             $0.backgroundColor = .clear
             $0.alwaysBounceVertical = true
+            $0.isUserInteractionEnabled = true
             $0.register(MainWeatherCollectionViewCell.self, forCellWithReuseIdentifier: MainWeatherCollectionViewCell.className)
             $0.register(MainFooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: MainFooterCollectionReusableView.className)
             $0.delegate = self
@@ -99,20 +135,30 @@ final class MainWeatherViewController: UIViewController {
     }
 }
 
-extension MainWeatherViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MainWeatherViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dummy.count
+        return self.isFiltering ? self.filteredArray.count : self.array.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainWeatherCollectionViewCell.className, for: indexPath) as? MainWeatherCollectionViewCell else { return UICollectionViewCell() }
-        let weatherText = dummy[indexPath.row]
-        cell.configureCell(weather: weatherText)
+        if self.isFiltering {
+            for i in 0..<dummy.count {
+                if dummy[i].place == self.filteredArray[indexPath.row] {
+                    cell.configureCell(weather: dummy[i], row: indexPath.row)
+                    realPageIndex = i
+                }
+            }
+        } else {
+            let weatherText = dummy[indexPath.row]
+            cell.configureCell(weather: weatherText, row: indexPath.row)
+        }
+        cell.delegate = self
         return cell
     }
     
@@ -130,9 +176,57 @@ extension MainWeatherViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 
-extension MainWeatherViewController: UISearchResultsUpdating {
+extension MainWeatherViewController: UISearchBarDelegate, UISearchControllerDelegate, UISearchResultsUpdating {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        moreButton.isHidden = true
+    }
+    
+    func didDismissSearchController(_ searchController: UISearchController) {
+        moreButton.isHidden = false
+    }
     
     func updateSearchResults(for searchController: UISearchController) {
-        dump(searchController.searchBar.text)
+        guard let text = searchController.searchBar.text else { return }
+        self.filteredArray = self.array.filter { $0.localizedCaseInsensitiveContains(text) }
+        
+        for subview in notingView.subviews {
+            if subview == discriptionLabel {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        if isFiltering && filteredArray == [] {
+            discriptionLabel.do {
+                $0.text = "'" + text + "'에 대한 검색 결과가 없습니다."
+                $0.textColor = .systemGray
+                $0.font = .displayMedium(ofSize: 15)
+            }
+            view.addSubview(notingView)
+            notingView.addSubview(discriptionLabel)
+            notingView.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+            discriptionLabel.snp.makeConstraints {
+                $0.bottom.equalToSuperview().inset(315.adjusted)
+                $0.centerX.equalToSuperview()
+            }
+        } else {
+            notingView.removeFromSuperview()
+        }
+        collectionView.reloadData()
+    }
+}
+
+extension MainWeatherViewController: ButtonTouchnAction {
+    func backGroundTapped(index: Int) {
+        let viewController = PageNavigationController()
+        if realPageIndex != -1 {
+            viewController.pageIndex = realPageIndex
+        } else {
+            viewController.pageIndex = index
+        }
+        self.navigationController?.pushViewController(viewController, animated: true)
+        realPageIndex = -1
+        mainSearchController.isActive = false
     }
 }
