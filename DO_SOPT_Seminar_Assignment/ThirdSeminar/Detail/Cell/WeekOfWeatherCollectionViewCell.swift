@@ -48,12 +48,12 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         }
         
         rainyPercent.do {
-            $0.font = .displayRegular(ofSize: 15)
+            $0.font = .displayBold(ofSize: 15)
             $0.textColor = UIColor(hexCode: "#81CFFA")
         }
         
         progressBackgroud.do {
-            $0.backgroundColor = .white
+            $0.backgroundColor = .darkGray
             $0.makeCornerRound(radius: 3.adjusted)
         }
         
@@ -81,6 +81,12 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         dayLabel.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16.adjusted)
             $0.centerY.equalToSuperview()
+        }
+        
+        weatherImage.snp.makeConstraints {
+            $0.leading.equalToSuperview().inset(82.adjusted)
+            $0.centerY.equalToSuperview()
+            $0.size.equalTo(26.adjusted)
         }
         
         lowTemperatureLabel.snp.makeConstraints {
@@ -112,23 +118,28 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         weatherImage.image = weather.weather
         rainyPercent.text = weather.rainyPercent
         
-        weatherImage.snp.makeConstraints {
-            if rainyPercent.text == "" {
-                $0.leading.equalToSuperview().inset(87.adjusted)
-                $0.centerY.equalToSuperview()
-                $0.size.equalTo(28.adjusted)
-            } else {
-                $0.leading.equalToSuperview().inset(88.adjusted)
-                $0.top.equalToSuperview().inset(7.adjusted)
-                $0.size.equalTo(25.adjusted)
-                print("dafsasfdsafadsfasfsfd")
+        if rainyPercent.text != "" {
+            weatherImage.snp.remakeConstraints {
+                $0.leading.equalToSuperview().inset(75.adjusted)
+                $0.top.equalToSuperview().inset(3.adjusted)
+                $0.size.equalTo(40.adjusted)
             }
-        }
-        
-        rainyPercent.snp.makeConstraints {
-            if rainyPercent.text != "" {
-                $0.leading.equalToSuperview().inset(84.adjusted)
+            rainyPercent.snp.makeConstraints {
+                $0.leading.equalToSuperview().inset(81.adjusted)
                 $0.top.equalToSuperview().inset(33.adjusted)
+            }
+        } else if weatherImage.image == ImageLiterals.icon.icSunCloud {
+            weatherImage.snp.remakeConstraints {
+                $0.leading.equalToSuperview().inset(81.adjusted)
+                $0.centerY.equalToSuperview()
+                $0.width.equalTo(32.adjusted)
+                $0.height.equalTo(26.adjusted)
+            }
+        } else {
+            weatherImage.snp.remakeConstraints {
+                $0.leading.equalToSuperview().inset(82.adjusted)
+                $0.centerY.equalToSuperview()
+                $0.size.equalTo(26.adjusted)
             }
         }
         
