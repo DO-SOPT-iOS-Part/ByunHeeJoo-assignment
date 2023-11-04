@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum DisplayLayoutFactory {
+enum LayoutFactory {
     
     //MARK: - 섹션별로 다른 SectionLayout 생성
     static func create() -> UICollectionViewCompositionalLayout {
@@ -33,10 +33,13 @@ enum DisplayLayoutFactory {
         section.orthogonalScrollingBehavior = .continuous
         section.interGroupSpacing = 22.adjusted
         section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 2)
+        section.boundarySupplementaryItems = [self.createSupplementaryHeaderItem()]
+        section.supplementaryContentInsetsReference = .layoutMargins
+        // Background
+        let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionOneBackground")
+        section.decorationItems = [sectionBackgroundDecoration]
         return section
     }
-
-
     
     static func createGridSection() -> NSCollectionLayoutSection {
         let itemSize = NSCollectionLayoutSize(
@@ -70,4 +73,11 @@ enum DisplayLayoutFactory {
         
         return section
     }
+    
+    static func createSupplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(66.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        headerElement.pinToVisibleBounds = true
+        return headerElement
+    }
+    
 }

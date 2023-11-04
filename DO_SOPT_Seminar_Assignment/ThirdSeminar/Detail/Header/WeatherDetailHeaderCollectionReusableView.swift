@@ -13,7 +13,7 @@ import Then
 final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView {
     
     private let textLabel = UILabel()
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -26,10 +26,13 @@ final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView 
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        textLabel.text = ""
+        configureHeader(text: .init(discription: ""))
     }
     
     private func setupHeaderView() {
+        self.backgroundColor = UIColor(red: 20/255, green: 30/255, blue: 40/255, alpha: 1)
+        self.makeCornerRound(radius: 15.adjusted)
+        
         textLabel.do {
             $0.text = StringLiterals.information.discription
             $0.textColor = .white
@@ -37,11 +40,14 @@ final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView 
             $0.numberOfLines = 2
         }
         
-        self.addSubview(textLabel)
+        self.addSubviews(textLabel)
         textLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(10.adjusted)
             $0.centerX.equalToSuperview()
         }
-        
+    }
+    
+    func configureHeader(text: HeaderText) {
+        textLabel.text = text.discription
     }
 }

@@ -13,6 +13,7 @@ import Then
 final class WeatherPageDetailViewController: UIViewController {
     
     private let dummy = WeatherDetail.dummy()
+
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
     
@@ -21,7 +22,7 @@ final class WeatherPageDetailViewController: UIViewController {
     let temperatureLabel = UILabel()
     let highLowTemperatureLabel = UILabel()
     
-    private let layout = DisplayLayoutFactory.create()
+    private let layout = LayoutFactory.create()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
     
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
@@ -72,9 +73,13 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.isUserInteractionEnabled = true
             $0.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
             $0.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
-//            $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
+            $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
             $0.delegate = self
             $0.dataSource = self
+        }
+        
+        layout.do {
+            $0.register(BackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
         }
         
         divisionLine.do {
@@ -214,13 +219,15 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         }
     }
     
-//    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-//        if kind == UICollectionView.elementKindSectionHeader {
-//            let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath)
-//            return header
-//        } else {
-//            return UICollectionReusableView()
-//        }
-//    }
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
+            header.configureHeader(text: HeaderText.dummy()[indexPath.row])
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
 
 }
