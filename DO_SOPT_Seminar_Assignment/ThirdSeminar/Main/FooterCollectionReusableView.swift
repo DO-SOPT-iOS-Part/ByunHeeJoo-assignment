@@ -41,7 +41,8 @@ final class FooterCollectionReusableView: UICollectionReusableView {
         }
         
         discription.snp.makeConstraints {
-            $0.center.equalToSuperview()
+            $0.top.equalToSuperview().inset(20.adjusted)
+            $0.centerX.equalToSuperview()
         }
     }
 }

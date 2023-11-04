@@ -8,12 +8,15 @@
 import UIKit
 
 struct HeaderText {
+    let icon: UIImage
     let discription: String
 }
 
 extension HeaderText {
     static func dummy() -> [HeaderText] {
-        return [HeaderText(discription: StringLiterals.information.discription),
-                HeaderText(discription: StringLiterals.information.secondDiscription)]
+        return [HeaderText(icon: ImageLiterals.icon.icClock
+                           ,discription: StringLiterals.information.firstDiscription),
+                HeaderText(icon: ImageLiterals.icon.icCalendar,
+                           discription: StringLiterals.information.secondDiscription)]
     }
 }

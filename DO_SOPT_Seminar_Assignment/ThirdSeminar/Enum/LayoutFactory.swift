@@ -76,7 +76,7 @@ enum LayoutFactory {
     }
     
     static func createSupplementaryFooterItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let footerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(40.adjusted)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
+        let footerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100.adjusted)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)
         return footerElement
     }
     
