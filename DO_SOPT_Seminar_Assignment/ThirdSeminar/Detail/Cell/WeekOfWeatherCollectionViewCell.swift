@@ -12,7 +12,8 @@ import Then
 
 final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     
-    private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
+    private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: 305
+        .adjusted, height: 0))
     private let dayLabel = UILabel()
     private let weatherImage = UIImageView()
     private let rainyPercent = UILabel()
@@ -73,7 +74,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         
         divisionLine.snp.makeConstraints {
             $0.top.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(15.adjusted)
+            $0.leading.equalToSuperview().inset(15.adjusted)
+            $0.width.equalTo(310.adjusted)
         }
         
         dayLabel.snp.makeConstraints {

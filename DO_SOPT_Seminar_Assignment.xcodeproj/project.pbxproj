@@ -47,10 +47,11 @@
 		2A9E85E02ACD679600D22C16 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A9E85DF2ACD679600D22C16 /* WeatherViewController.swift */; };
 		2A9E85E52ACD679800D22C16 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E42ACD679800D22C16 /* Assets.xcassets */; };
 		2A9E85E82ACD679800D22C16 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A9E85E62ACD679800D22C16 /* LaunchScreen.storyboard */; };
-		2AFBEAE12AF6734E0012CEC3 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE02AF6734E0012CEC3 /* HeaderText.swift */; };
 		2AFBEAE42AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE32AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift */; };
 		2AFBEAE62AF68A2E0012CEC3 /* UIColor+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE52AF68A2E0012CEC3 /* UIColor+.swift */; };
 		2AFBEAE82AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE72AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift */; };
+		2AFBEAEA2AF6A8DC0012CEC3 /* InformationCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAE92AF6A8DC0012CEC3 /* InformationCollectionReusableView.swift */; };
+		2AFBEAEC2AF6AABF0012CEC3 /* HeaderText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AFBEAEB2AF6AABF0012CEC3 /* HeaderText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,10 +95,11 @@
 		2A9E85E42ACD679800D22C16 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A9E85E72ACD679800D22C16 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A9E85E92ACD679800D22C16 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2AFBEAE02AF6734E0012CEC3 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
 		2AFBEAE32AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstBackgroundCollectionReusableView.swift; sourceTree = "<group>"; };
 		2AFBEAE52AF68A2E0012CEC3 /* UIColor+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+.swift"; sourceTree = "<group>"; };
 		2AFBEAE72AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondBackgroundCollectionReusableView.swift; sourceTree = "<group>"; };
+		2AFBEAE92AF6A8DC0012CEC3 /* InformationCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformationCollectionReusableView.swift; sourceTree = "<group>"; };
+		2AFBEAEB2AF6AABF0012CEC3 /* HeaderText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderText.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				2A1010AD2AF60A340005DEE7 /* WeatherDetailHeaderCollectionReusableView.swift */,
+				2AFBEAE92AF6A8DC0012CEC3 /* InformationCollectionReusableView.swift */,
 			);
 			path = Header;
 			sourceTree = "<group>";
@@ -208,7 +211,7 @@
 				2A1D15DB2AEACAE900FB5B9F /* Weather.swift */,
 				2A1D15D52AEAB18200FB5B9F /* WeatherDetail.swift */,
 				2A1010A52AF604AB0005DEE7 /* WeatherDetailOfWeek.swift */,
-				2AFBEAE02AF6734E0012CEC3 /* HeaderText.swift */,
+				2AFBEAEB2AF6AABF0012CEC3 /* HeaderText.swift */,
 			);
 			path = Dummy;
 			sourceTree = "<group>";
@@ -421,7 +424,6 @@
 				2A1D15DA2AEACA6400FB5B9F /* WeatherView.swift in Sources */,
 				2A1D15D22AEAA3A200FB5B9F /* CALayer+.swift in Sources */,
 				2A1D15D82AEABA0B00FB5B9F /* Adjust+.swift in Sources */,
-				2AFBEAE12AF6734E0012CEC3 /* HeaderText.swift in Sources */,
 				2A1010A12AF5F87E0005DEE7 /* WeatherPageDetailViewController.swift in Sources */,
 				2A1010A42AF602540005DEE7 /* MySection.swift in Sources */,
 				2A10109F2AF5F6F50005DEE7 /* WeatherPageViewController.swift in Sources */,
@@ -429,9 +431,11 @@
 				2AFBEAE42AF675710012CEC3 /* FirstBackgroundCollectionReusableView.swift in Sources */,
 				2A1010982AF534400005DEE7 /* MainWeatherViewController.swift in Sources */,
 				2A1010B32AF612FE0005DEE7 /* LayoutFactory.swift in Sources */,
+				2AFBEAEA2AF6A8DC0012CEC3 /* InformationCollectionReusableView.swift in Sources */,
 				2A1010AC2AF6096E0005DEE7 /* WeekOfWeatherCollectionViewCell.swift in Sources */,
 				2AFBEAE82AF6A3CE0012CEC3 /* SecondBackgroundCollectionReusableView.swift in Sources */,
 				2A9E85DC2ACD679600D22C16 /* AppDelegate.swift in Sources */,
+				2AFBEAEC2AF6AABF0012CEC3 /* HeaderText.swift in Sources */,
 				2A9E85DE2ACD679600D22C16 /* SceneDelegate.swift in Sources */,
 				2AFBEAE62AF68A2E0012CEC3 /* UIColor+.swift in Sources */,
 				2A1010AE2AF60A340005DEE7 /* WeatherDetailHeaderCollectionReusableView.swift in Sources */,

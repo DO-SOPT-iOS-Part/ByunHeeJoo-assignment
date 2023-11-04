@@ -24,11 +24,6 @@ final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView 
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        configureHeader(text: .init(discription: ""))
-    }
-    
     private func setupHeaderView() {
         self.backgroundColor = UIColor(red: 20/255, green: 30/255, blue: 40/255, alpha: 1)
         self.makeCornerRound(radius: 15.adjusted)
@@ -45,9 +40,5 @@ final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView 
             $0.top.equalToSuperview().inset(10.adjusted)
             $0.centerX.equalToSuperview()
         }
-    }
-    
-    func configureHeader(text: HeaderText) {
-        textLabel.text = text.discription
     }
 }

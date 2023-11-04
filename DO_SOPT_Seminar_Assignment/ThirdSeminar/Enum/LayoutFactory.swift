@@ -36,7 +36,7 @@ enum LayoutFactory {
         section.orthogonalScrollingBehavior = .continuous
         section.interGroupSpacing = 22.adjusted
         section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 22.adjusted)
-        section.boundarySupplementaryItems = [self.createSupplementaryHeaderItem()]
+        section.boundarySupplementaryItems = [self.createSupplementaryHeaderItem(forSection: 0)]
         section.supplementaryContentInsetsReference = .layoutMargins
         // Background
         let sectionBackgroundDecoration = NSCollectionLayoutDecorationItem.background(elementKind: "sectionOneBackground")
@@ -52,7 +52,7 @@ enum LayoutFactory {
         section.interGroupSpacing = 0
         section.contentInsets = .init(top: 0, leading: 0, bottom: 0, trailing: 0)
         section.boundarySupplementaryItems = [
-                self.createSupplementaryHeaderItem(),
+                self.createSupplementaryHeaderItem(forSection: 1),
                 self.createSupplementaryFooterItem()
             ]
         section.supplementaryContentInsetsReference = .layoutMargins
@@ -62,8 +62,15 @@ enum LayoutFactory {
         return section
     }
     
-    static func createSupplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        let headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(66.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+    static func createSupplementaryHeaderItem(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
+        let headerElement: NSCollectionLayoutBoundarySupplementaryItem
+        
+        if section == 0 {
+            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(66.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        } else {
+            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(38.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        }
+        
         headerElement.pinToVisibleBounds = true
         return headerElement
     }

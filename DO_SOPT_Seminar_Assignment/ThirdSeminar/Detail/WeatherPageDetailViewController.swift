@@ -14,6 +14,7 @@ final class WeatherPageDetailViewController: UIViewController {
     
     private let firstDummy = WeatherDetail.dummy()
     private let secondDummy = WeatherDetailOfWeek.dummy()
+    private var isScrolled: Bool = false
 
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
@@ -75,6 +76,7 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
             $0.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
             $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
+            $0.register(InformationCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InformationCollectionReusableView.className)
             $0.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.className)
             $0.delegate = self
             $0.dataSource = self
@@ -227,14 +229,38 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
-            header.configureHeader(text: HeaderText.dummy()[indexPath.row])
-            return header
+            if indexPath.section == 0 {
+                if isScrolled {
+                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InformationCollectionReusableView.className, for: indexPath) as? InformationCollectionReusableView else { fatalError() }
+                    header.configureHeader(text: HeaderText.dummy()[indexPath.section])
+                    return header
+                } else {
+                    guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
+                    return header
+                }
+            } else {
+                guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InformationCollectionReusableView.className, for: indexPath) as? InformationCollectionReusableView else { fatalError() }
+                header.configureHeader(text: HeaderText.dummy()[indexPath.section])
+                return header
+            }
         case UICollectionView.elementKindSectionFooter:
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterCollectionReusableView.className, for: indexPath)
             return footer
         default:
             return UICollectionReusableView()
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // 현재 스크롤 위치를 확인
+        let offsetY = scrollView.contentOffset.y
+        if offsetY < 100 {
+            if offsetY > 20 {
+                isScrolled = true
+            } else {
+                isScrolled = false
+            }
+            collectionView.reloadData()
         }
     }
 }

@@ -24,7 +24,7 @@ final class SecondBackgroundCollectionReusableView: UICollectionReusableView {
 
         backgroundView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(705.adjusted)
+            $0.height.equalTo(683.adjusted)
         }
     }
 
