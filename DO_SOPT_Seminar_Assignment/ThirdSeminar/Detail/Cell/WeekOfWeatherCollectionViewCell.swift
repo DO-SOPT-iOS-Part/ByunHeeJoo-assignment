@@ -53,7 +53,7 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         }
         
         progressBackgroud.do {
-            $0.backgroundColor = .darkGray
+            $0.backgroundColor = .black
             $0.makeCornerRound(radius: 3.adjusted)
         }
         
@@ -98,13 +98,34 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(171.adjusted)
             $0.centerY.equalToSuperview()
             $0.width.equalTo(100.adjusted)
-            $0.height.equalTo(3.adjusted)
+            $0.height.equalTo(4.adjusted)
         }
         
         highTemperatureLabel.snp.makeConstraints {
             $0.trailing.equalToSuperview().inset(17.adjusted)
             $0.centerY.equalToSuperview()
         }
+        
+    }
+    
+    private func setProgressView() {
+        // 뷰 크기를 정확하게 설정한 후 그라데이션 레이어 추가
+        progressBackgroud.layoutIfNeeded() // 현재 뷰의 크기를 강제로 설정
+
+        let gradientLayer = CAGradientLayer()
+        let frame = CGRect(x: 50, y: 0, width: progressBackgroud.bounds.size.width * 0.5, height: progressBackgroud.bounds.size.height)
+        gradientLayer.frame = frame
+        let colors: [CGColor] = [
+            .init(red: 0.59, green: 0.82, blue: 0.66, alpha: 1),
+            .init(red: 0.72, green: 0.81, blue: 0.47, alpha: 1),
+            .init(red: 0.97, green: 0.84, blue: 0.29, alpha: 1),
+            .init(red: 0.94, green: 0.53, blue: 0.21, alpha: 1)
+        ]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer.colors = colors
+        gradientLayer.cornerRadius = 3.adjusted
+        progressBackgroud.layer.addSublayer(gradientLayer)
         
     }
     
@@ -145,5 +166,7 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         
         lowTemperatureLabel.text = weather.lowTemperature
         highTemperatureLabel.text = weather.highTemperature
+        
+        setProgressView()
     }
 }
