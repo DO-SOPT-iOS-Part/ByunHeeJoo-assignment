@@ -20,7 +20,7 @@ extension WeatherDetailOfWeek {
         return [WeatherDetailOfWeek(day: "오늘", weather: ImageLiterals.icon.icSun, rainyPercent: "", lowTemperature: "15°", highTemperature: "29°"),
                 WeatherDetailOfWeek(day: "월", weather: ImageLiterals.icon.icLittleRain, rainyPercent: "60%", lowTemperature: "18°", highTemperature: "27°"),
                 WeatherDetailOfWeek(day: "화", weather: ImageLiterals.icon.icLittleRain, rainyPercent: "60%", lowTemperature: "20°", highTemperature: "25°"),
-                WeatherDetailOfWeek(day: "수", weather: ImageLiterals.icon.icLittleRain, rainyPercent: "70%", lowTemperature: "15°", highTemperature: "29°"),
+                WeatherDetailOfWeek(day: "수", weather: ImageLiterals.icon.icLittleRain, rainyPercent: "70%", lowTemperature: "17°", highTemperature: "25°"),
                 WeatherDetailOfWeek(day: "목", weather: ImageLiterals.icon.icLittleRain, rainyPercent: "50%", lowTemperature: "17°", highTemperature: "25°"),
                 WeatherDetailOfWeek(day: "금", weather: ImageLiterals.icon.icSunCloud, rainyPercent: "", lowTemperature: "20°", highTemperature: "26°"),
                 WeatherDetailOfWeek(day: "토", weather: ImageLiterals.icon.icSun, rainyPercent: "", lowTemperature: "18°", highTemperature: "25°"),

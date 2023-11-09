@@ -19,6 +19,7 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     private let rainyPercent = UILabel()
     private let lowTemperatureLabel = UILabel()
     private let progressBackgroud = UIProgressView()
+    private var gradientLayer: CAGradientLayer?
     private let highTemperatureLabel = UILabel()
     
     override init(frame: CGRect) {
@@ -108,25 +109,35 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         
     }
     
-    private func setProgressView() {
-        // 뷰 크기를 정확하게 설정한 후 그라데이션 레이어 추가
-        progressBackgroud.layoutIfNeeded() // 현재 뷰의 크기를 강제로 설정
-
-        let gradientLayer = CAGradientLayer()
-        let frame = CGRect(x: 50, y: 0, width: progressBackgroud.bounds.size.width * 0.5, height: progressBackgroud.bounds.size.height)
-        gradientLayer.frame = frame
+    private func setProgressView(x: CGFloat, width: CGFloat) {
+        gradientLayer?.removeFromSuperlayer()
         let colors: [CGColor] = [
             .init(red: 0.59, green: 0.82, blue: 0.66, alpha: 1),
             .init(red: 0.72, green: 0.81, blue: 0.47, alpha: 1),
             .init(red: 0.97, green: 0.84, blue: 0.29, alpha: 1),
             .init(red: 0.94, green: 0.53, blue: 0.21, alpha: 1)
         ]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.colors = colors
-        gradientLayer.cornerRadius = 3.adjusted
-        progressBackgroud.layer.addSublayer(gradientLayer)
+        progressBackgroud.layoutIfNeeded() // 현재 뷰의 크기를 강제로 설정
+        let frame = CGRect(x: x * (100 / 17), y: 0, width: progressBackgroud.bounds.size.width * width, height: progressBackgroud.bounds.size.height)
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.frame = frame
         
+        if width < 0.5 && x < 3 {
+            let gradientColor: [CGColor] = [colors[0], colors[1]]
+            gradientLayer?.colors = gradientColor
+        } else if width < 0.5 && x > 3 {
+            let gradientColor: [CGColor] = [colors[1], colors[2]]
+            gradientLayer?.colors = gradientColor
+        } else {
+            gradientLayer?.colors = colors
+        }
+        
+        gradientLayer?.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer?.endPoint = CGPoint(x: 1.0,  y: 0.0)
+        gradientLayer?.cornerRadius = 3.adjusted
+        if let gradientLayer = gradientLayer {
+            progressBackgroud.layer.addSublayer(gradientLayer)
+        }
     }
     
     override func prepareForReuse() {
@@ -167,6 +178,15 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         lowTemperatureLabel.text = weather.lowTemperature
         highTemperatureLabel.text = weather.highTemperature
         
-        setProgressView()
+        let (highString, _) = weather.highTemperature.splitLastString()
+        let highToFloat: Float = Float(highString) ?? 0
+        let (lowString, _) = weather.lowTemperature.splitLastString()
+        let lowToFloat: Float = Float(lowString) ?? 0
+        
+        let totalWidth = 17.0
+        let realWidth = Float(highToFloat - lowToFloat) / Float(totalWidth)
+        
+        let x = lowToFloat - 12.0
+        setProgressView(x: CGFloat(x), width: CGFloat(realWidth))
     }
 }
