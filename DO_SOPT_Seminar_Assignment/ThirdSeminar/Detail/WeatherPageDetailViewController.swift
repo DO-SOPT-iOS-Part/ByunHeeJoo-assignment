@@ -19,10 +19,10 @@ final class WeatherPageDetailViewController: UIViewController {
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
     
-    let placeLabel = UILabel()
-    let weatherLabel = UILabel()
-    let temperatureLabel = UILabel()
-    let highLowTemperatureLabel = UILabel()
+    var placeLabel: String = ""
+    var weatherLabel: String = ""
+    var temperatureLabel: String = ""
+    var highLowTemperatureLabel: String = ""
     
     private let layout = LayoutFactory.create()
     private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
@@ -45,27 +45,7 @@ final class WeatherPageDetailViewController: UIViewController {
         backGroundImage.do {
             $0.image = ImageLiterals.imgBackGround.imgFullBackground
         }
-        
-        placeLabel.do {
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 36)
-        }
-        
-        temperatureLabel.do {
-            $0.textColor = .white
-            $0.font = .displayThin(ofSize: 102)
-        }
-        
-        weatherLabel.do {
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 24)
-        }
-        
-        highLowTemperatureLabel.do {
-            $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 20)
-        }
-        
+                
         collectionView.do {
             $0.isScrollEnabled = true
             $0.showsHorizontalScrollIndicator = false
@@ -73,6 +53,7 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.backgroundColor = .clear
             $0.alwaysBounceVertical = true
             $0.isUserInteractionEnabled = true
+            $0.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.className)
             $0.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
             $0.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
             $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
@@ -113,10 +94,6 @@ final class WeatherPageDetailViewController: UIViewController {
     private func setLayout() {
         view.addSubview(backGroundView)
         backGroundView.addSubviews(backGroundImage,
-                                   placeLabel,
-                                   temperatureLabel,
-                                   weatherLabel,
-                                   highLowTemperatureLabel,
                                    collectionView,
                                    divisionLine,
                                    mapButton,
@@ -132,28 +109,8 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.edges.equalToSuperview()
         }
         
-        placeLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
-            $0.centerX.equalToSuperview()
-        }
-
-        temperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(76.adjusted)
-            $0.centerX.equalToSuperview()
-        }
-        
-        weatherLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(188.adjusted)
-            $0.centerX.equalToSuperview()
-        }
-        
-        highLowTemperatureLabel.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(222.adjusted)
-            $0.centerX.equalToSuperview()
-        }
-        
         collectionView.snp.makeConstraints {
-            $0.top.equalTo(view.safeAreaLayoutGuide).inset(290.adjusted)
+            $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
             $0.leading.trailing.equalToSuperview().inset(20.adjusted)
             $0.bottom.equalToSuperview()
         }
@@ -202,6 +159,9 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 0 {
+            return 1
+        }
+        else if section == 1 {
             return WeatherDetail.dummy().count
         } else {
             return WeatherDetailOfWeek.dummy().count
@@ -214,6 +174,10 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
             return UICollectionViewCell()
         }
         switch sectionType {
+        case .infotmation:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InformationCollectionViewCell.className, for: indexPath) as? InformationCollectionViewCell else { return UICollectionViewCell() }
+            cell.configureCell(place: placeLabel, temperature: temperatureLabel, weather: weatherLabel, highLowTemperature: highLowTemperatureLabel)
+            return cell
         case .dayOfWeather:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayOfWeatherCollectionViewCell.className, for: indexPath) as? DayOfWeatherCollectionViewCell else { return UICollectionViewCell() }
             let weatherDetail = firstDummy[indexPath.row]
@@ -230,19 +194,21 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            if indexPath.section == 0 {
+            if indexPath.section == 1 {
                 if isScrolled {
                     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InformationCollectionReusableView.className, for: indexPath) as? InformationCollectionReusableView else { fatalError() }
-                    header.configureHeader(text: HeaderText.dummy()[indexPath.section])
+                    header.configureHeader(text: HeaderText.dummy()[indexPath.item])
                     return header
                 } else {
                     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
                     return header
                 }
-            } else {
+            } else if indexPath.section == 2 {
                 guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: InformationCollectionReusableView.className, for: indexPath) as? InformationCollectionReusableView else { fatalError() }
-                header.configureHeader(text: HeaderText.dummy()[indexPath.section])
+                header.configureHeader(text: HeaderText.dummy()[indexPath.section - 1])
                 return header
+            } else {
+                return  UICollectionReusableView()
             }
         case UICollectionView.elementKindSectionFooter:
             let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: FooterCollectionReusableView.className, for: indexPath)

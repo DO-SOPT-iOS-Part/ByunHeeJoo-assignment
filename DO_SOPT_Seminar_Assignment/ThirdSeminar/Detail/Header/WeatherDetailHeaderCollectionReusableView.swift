@@ -31,14 +31,15 @@ final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView 
         textLabel.do {
             $0.text = StringLiterals.information.discription
             $0.textColor = .white
-            $0.font = .displayMedium(ofSize: 18)
+            $0.font = .displayMedium(ofSize: 16)
             $0.numberOfLines = 2
         }
         
         self.addSubviews(textLabel)
         textLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(10.adjusted)
+            $0.verticalEdges.equalToSuperview().inset(10.adjusted)
             $0.centerX.equalToSuperview()
         }
+        
     }
 }

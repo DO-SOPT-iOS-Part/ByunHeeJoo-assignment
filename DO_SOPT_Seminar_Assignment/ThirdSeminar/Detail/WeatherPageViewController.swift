@@ -19,13 +19,12 @@ final class WeatherPageViewController: UIViewController {
         
         for dummy in Weather.dummy() {
             let vc = WeatherPageDetailViewController()
-            vc.placeLabel.text = dummy.place
-            vc.temperatureLabel.text = dummy.temperature
-            vc.weatherLabel.text = dummy.weather
-            vc.highLowTemperatureLabel.text = dummy.highLowTemperature
+            vc.placeLabel = dummy.place
+            vc.temperatureLabel = dummy.temperature
+            vc.weatherLabel = dummy.weather
+            vc.highLowTemperatureLabel = dummy.highLowTemperature
             viewControllers.append(vc)
         }
-    
         return viewControllers
     }()
     

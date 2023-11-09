@@ -7,6 +7,7 @@
 
 @frozen
 enum MySection: Int, CaseIterable {
-    case dayOfWeather = 0
+    case infotmation = 0
+    case dayOfWeather
     case weekOfWeather
 }
