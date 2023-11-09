@@ -211,6 +211,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
                 $0.size.equalTo(4.adjusted)
                 $0.center.equalToSuperview()
             }
+        } else {
+            dotBackground.removeFromSuperview()
         }
     }
 }

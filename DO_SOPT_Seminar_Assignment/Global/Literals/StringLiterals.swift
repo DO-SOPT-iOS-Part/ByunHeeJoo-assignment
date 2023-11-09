@@ -18,7 +18,7 @@ enum StringLiterals {
     }
     
     enum firstWeather {
-        static let firstPlace = "의정부시"
+        static let firstPlace = "고양시"
         static let firstWeather = "흐림"
         static let firstTemperature = "21°"
         static let firstHighLowTemperature = "최고:29°  최저:15°"
@@ -46,7 +46,7 @@ enum StringLiterals {
     }
     
     enum fifthWeather {
-        static let fifthPlace = "고양시"
+        static let fifthPlace = "의정부시"
         static let fifthWeather = "흐림"
         static let fifthTemperature = "31°"
         static let fifthHighLowTemperature = "최고:33°  최저:13°"

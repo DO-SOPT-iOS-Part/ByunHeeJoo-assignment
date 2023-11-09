@@ -90,10 +90,4 @@ extension WeatherPageViewController: UIPageViewControllerDataSource, UIPageViewC
         }
         return dataViewControllers[nextIndex]
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        
-        return CGSize(width: collectionView.bounds.width, height: 212.adjusted)
-    }
-    
 }
