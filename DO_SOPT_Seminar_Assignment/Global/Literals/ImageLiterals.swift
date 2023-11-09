@@ -29,5 +29,6 @@ enum ImageLiterals {
         static var icSearch: UIImage { .load(named: "icSearch")}
         static var icCalendar: UIImage { .load(named: "icCalendar")}
         static var icClock: UIImage { .load(named: "icClock")}
+        static var whiteDot: UIImage { .load(named: "whiteDot")}
     }
 }

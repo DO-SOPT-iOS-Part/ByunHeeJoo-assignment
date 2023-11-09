@@ -19,6 +19,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     private let rainyPercent = UILabel()
     private let lowTemperatureLabel = UILabel()
     private let progressBackgroud = UIProgressView()
+    private let dotBackground = UIView()
+    private let whiteDot = UIImageView()
     private var gradientLayer: CAGradientLayer?
     private let highTemperatureLabel = UILabel()
     
@@ -61,6 +63,15 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         highTemperatureLabel.do {
             $0.font = .displayMedium(ofSize: 22)
             $0.textColor = .white
+        }
+        
+        dotBackground.do {
+            $0.backgroundColor = .black
+            $0.makeCornerRound(radius: 4.adjusted)
+        }
+        
+        whiteDot.do {
+            $0.image = ImageLiterals.icon.whiteDot
         }
     }
     
@@ -142,10 +153,10 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        configureCell(weather: .init(day: "", weather: UIImage(), rainyPercent: "", lowTemperature: "", highTemperature: ""))
+        configureCell(weather: .init(day: "", weather: UIImage(), rainyPercent: "", lowTemperature: "", highTemperature: ""), index: 0)
     }
     
-    func configureCell(weather: WeatherDetailOfWeek) {
+    func configureCell(weather: WeatherDetailOfWeek, index: Int) {
         dayLabel.text = weather.day
         weatherImage.image = weather.weather
         rainyPercent.text = weather.rainyPercent
@@ -188,5 +199,18 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         
         let x = lowToFloat - 12.0
         setProgressView(x: CGFloat(x), width: CGFloat(realWidth))
+        if index == 0 {
+            progressBackgroud.addSubview(dotBackground)
+            dotBackground.addSubview(whiteDot)
+            dotBackground.snp.makeConstraints {
+                $0.size.equalTo(7.adjusted)
+                $0.center.equalToSuperview()
+            }
+            
+            whiteDot.snp.makeConstraints {
+                $0.size.equalTo(4.adjusted)
+                $0.center.equalToSuperview()
+            }
+        }
     }
 }

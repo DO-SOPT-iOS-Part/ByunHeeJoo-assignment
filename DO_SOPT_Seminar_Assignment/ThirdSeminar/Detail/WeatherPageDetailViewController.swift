@@ -222,7 +222,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         case .weekOfWeather:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: WeekOfWeatherCollectionViewCell.className, for: indexPath) as? WeekOfWeatherCollectionViewCell else { return UICollectionViewCell() }
             let weatherWeekDetail = secondDummy[indexPath.row]
-            cell.configureCell(weather: weatherWeekDetail)
+            cell.configureCell(weather: weatherWeekDetail, index: indexPath.row)
             return cell
         }
     }
