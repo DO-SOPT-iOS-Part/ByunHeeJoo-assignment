@@ -47,20 +47,20 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
         addSubviews(divisionLine, timeLabel, weatherImage, temperatureLabel)
         divisionLine.snp.makeConstraints {
             $0.top.trailing.equalToSuperview()
-            $0.leading.equalToSuperview().inset(14.adjusted)
+            $0.leading.equalToSuperview()
         }
         timeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(14.adjusted)
-            $0.leading.equalToSuperview().inset(20.adjusted)
+            $0.centerX.equalToSuperview()
         }
         weatherImage.snp.makeConstraints {
             $0.top.equalToSuperview().inset(50.adjusted)
             $0.size.equalTo(44)
-            $0.leading.equalToSuperview().inset(15.adjusted)
+            $0.centerX.equalToSuperview()
         }
         temperatureLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(108.adjusted)
-            $0.leading.equalToSuperview().inset(21.adjusted)
+            $0.centerX.equalToSuperview()
         }
         
     }
