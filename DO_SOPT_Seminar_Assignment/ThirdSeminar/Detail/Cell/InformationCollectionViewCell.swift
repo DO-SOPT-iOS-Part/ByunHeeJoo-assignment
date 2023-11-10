@@ -61,7 +61,7 @@ final class InformationCollectionViewCell: UICollectionViewCell {
         }
         
         weatherLabel.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(159.adjusted)
+            $0.top.equalToSuperview().inset(154.adjusted)
             $0.centerX.equalToSuperview()
         }
         

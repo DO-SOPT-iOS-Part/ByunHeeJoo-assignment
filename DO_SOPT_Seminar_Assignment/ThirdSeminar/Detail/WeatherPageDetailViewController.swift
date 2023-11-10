@@ -15,9 +15,12 @@ final class WeatherPageDetailViewController: UIViewController {
     private let firstDummy = WeatherDetail.dummy()
     private let secondDummy = WeatherDetailOfWeek.dummy()
     private var isScrolled: Bool = false
-
+    
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
+    
+    private let navigationPlace = UILabel()
+    private let navigationWeather = UILabel()
     
     var placeLabel: String = ""
     var weatherLabel: String = ""
@@ -45,7 +48,7 @@ final class WeatherPageDetailViewController: UIViewController {
         backGroundImage.do {
             $0.image = ImageLiterals.imgBackGround.imgFullBackground
         }
-                
+        
         collectionView.do {
             $0.makeCornerRound(radius: 15.adjusted)
             $0.isScrollEnabled = true
@@ -62,7 +65,7 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.layer.addBorder([.top], color: UIColor.gray, width: 0.8)
             $0.backgroundColor = UIColor(hexCode: "#212832")
         }
-    
+        
         mapButton.do {
             $0.setImage(ImageLiterals.icon.icMap, for: .normal)
         }
@@ -149,6 +152,11 @@ final class WeatherPageDetailViewController: UIViewController {
     
     @objc
     func popButtonTapped() {
+        if let navigationBar = self.navigationController?.navigationBar {
+            for subview in navigationBar.subviews {
+                subview.removeFromSuperview()
+            }
+        }
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -222,13 +230,54 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         // 현재 스크롤 위치를 확인
         let offsetY = scrollView.contentOffset.y
-        if offsetY < 100 {
-            if offsetY > 20 {
-                isScrolled = true
-            } else {
+        
+        if offsetY < 250 {
+            if offsetY < 20 {
                 isScrolled = false
+                collectionView.reloadData()
             }
-            collectionView.reloadData()
+            if offsetY > 240 {
+                // moreButton을 찾아 제거
+                if let moreButton = navigationController?.navigationBar.subviews.first(where: { $0 is UIButton }) {
+                    moreButton.removeFromSuperview()
+                }
+                navigationController?.navigationBar.isHidden = false
+                
+                navigationPlace.do {
+                    $0.text = placeLabel
+                    $0.textColor = .white
+                    $0.font = .displayMedium(ofSize: 36)
+                }
+                navigationWeather.do {
+                    $0.text = temperatureLabel + "  |  " + weatherLabel
+                    $0.textColor = .white
+                    $0.font = .displayMedium(ofSize: 20)
+                }
+                navigationController?.navigationBar.addSubviews(navigationPlace, navigationWeather)
+                navigationPlace.snp.makeConstraints {
+                    $0.top.equalToSuperview()
+                    $0.centerX.equalToSuperview()
+                }
+                navigationWeather.snp.makeConstraints {
+                    $0.top.equalTo(navigationPlace.snp.bottom).offset(5.adjusted)
+                    $0.centerX.equalToSuperview()
+                }
+                
+                collectionView.snp.remakeConstraints {
+                    $0.top.equalTo(navigationWeather.snp.bottom).offset(25.adjusted)
+                    $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+                    $0.bottom.equalToSuperview()
+                }
+                isScrolled = true
+                collectionView.reloadData()
+            } else {
+                navigationController?.navigationBar.isHidden = true
+                collectionView.snp.remakeConstraints {
+                    $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
+                    $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+                    $0.bottom.equalToSuperview()
+                }
+            }
         }
     }
 }

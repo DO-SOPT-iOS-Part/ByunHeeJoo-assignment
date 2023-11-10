@@ -43,6 +43,19 @@ final class MainWeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        if let navigationBar = self.navigationController?.navigationBar {
+            for subview in navigationBar.subviews {
+                subview.removeFromSuperview()
+            }
+        }
+        navigationController?.navigationBar.addSubview(moreButton)
+        moreButton.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview().inset(321.adjusted)
+            $0.trailing.equalToSuperview().inset(10.adjusted)
+            $0.size.equalTo(44.adjusted)
+        }
+        
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.hidesBackButton = true
     }
@@ -118,14 +131,6 @@ final class MainWeatherViewController: UIViewController {
     }
     
     private func setLayout() {
-        
-        navigationController?.navigationBar.addSubview(moreButton)
-        moreButton.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview().inset(321.adjusted)
-            $0.trailing.equalToSuperview().inset(10.adjusted)
-            $0.size.equalTo(44.adjusted)
-        }
         
         view.addSubview(collectionView)
         collectionView.snp.makeConstraints {
