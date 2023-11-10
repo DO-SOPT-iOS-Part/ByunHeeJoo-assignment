@@ -21,6 +21,7 @@ final class WeatherPageDetailViewController: UIViewController {
     
     private let navigationPlace = UILabel()
     private let navigationWeather = UILabel()
+    private var navigationAnimator: UIViewPropertyAnimator?
     
     var placeLabel: String = ""
     var weatherLabel: String = ""
@@ -228,15 +229,17 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        // 현재 스크롤 위치를 확인
         let offsetY = scrollView.contentOffset.y
         
-        if offsetY < 250 {
+        if offsetY < 240 {
             if offsetY < 20 {
                 isScrolled = false
                 collectionView.reloadData()
             }
-            if offsetY > 240 {
+        }
+        
+        if offsetY > 230 {
+            if navigationAnimator == nil {
                 // moreButton을 찾아 제거
                 if let moreButton = navigationController?.navigationBar.subviews.first(where: { $0 is UIButton }) {
                     moreButton.removeFromSuperview()
@@ -263,20 +266,34 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
                     $0.centerX.equalToSuperview()
                 }
                 
-                collectionView.snp.remakeConstraints {
-                    $0.top.equalTo(navigationWeather.snp.bottom).offset(25.adjusted)
-                    $0.leading.trailing.equalToSuperview().inset(20.adjusted)
-                    $0.bottom.equalToSuperview()
+                navigationAnimator = UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) {
+                    self.collectionView.snp.remakeConstraints {
+                        $0.top.equalTo(self.navigationWeather.snp.bottom).offset(25.adjusted)
+                        $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+                        $0.bottom.equalToSuperview()
+                    }
+                    self.view.layoutIfNeeded()
                 }
-                isScrolled = true
-                collectionView.reloadData()
-            } else {
-                navigationController?.navigationBar.isHidden = true
-                collectionView.snp.remakeConstraints {
-                    $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
-                    $0.leading.trailing.equalToSuperview().inset(20.adjusted)
-                    $0.bottom.equalToSuperview()
+                
+                navigationAnimator?.addCompletion { _ in
+                    // 애니메이션이 완료된 후에 collectionView의 레이아웃을 변경
+                    self.isScrolled = true
+                    self.collectionView.reloadData()
                 }
+                
+                navigationAnimator?.startAnimation()
+            }
+        } else {
+            if navigationAnimator != nil {
+                navigationAnimator?.stopAnimation(true)
+                navigationAnimator = nil
+            }
+            
+            navigationController?.navigationBar.isHidden = true
+            collectionView.snp.remakeConstraints {
+                $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
+                $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+                $0.bottom.equalToSuperview()
             }
         }
     }
