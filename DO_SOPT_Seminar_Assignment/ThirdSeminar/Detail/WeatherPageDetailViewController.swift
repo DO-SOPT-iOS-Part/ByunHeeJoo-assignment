@@ -45,6 +45,23 @@ final class WeatherPageDetailViewController: UIViewController {
         setRegister()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let navigationBar = self.navigationController?.navigationBar {
+            for subview in navigationBar.subviews {
+                subview.removeFromSuperview()
+            }
+        }
+        
+        collectionView.snp.remakeConstraints {
+            $0.top.equalToSuperview().inset(34.adjusted)
+            $0.leading.trailing.equalToSuperview().inset(20.adjusted)
+            $0.bottom.equalToSuperview()
+        }
+        
+    }
+    
     private func setStyle() {
         backGroundImage.do {
             $0.image = ImageLiterals.imgBackGround.imgFullBackground
@@ -153,11 +170,6 @@ final class WeatherPageDetailViewController: UIViewController {
     
     @objc
     func popButtonTapped() {
-        if let navigationBar = self.navigationController?.navigationBar {
-            for subview in navigationBar.subviews {
-                subview.removeFromSuperview()
-            }
-        }
         self.navigationController?.popViewController(animated: true)
     }
 }
@@ -240,11 +252,6 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         
         if offsetY > 230 {
             if navigationAnimator == nil {
-                if let navigationBar = self.navigationController?.navigationBar {
-                    for subview in navigationBar.subviews {
-                        subview.removeFromSuperview()
-                    }
-                }
                 navigationController?.navigationBar.isHidden = false
                 
                 navigationPlace.do {
