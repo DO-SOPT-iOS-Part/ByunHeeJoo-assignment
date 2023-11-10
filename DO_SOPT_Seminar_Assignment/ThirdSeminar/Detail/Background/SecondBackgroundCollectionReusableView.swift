@@ -17,13 +17,14 @@ final class SecondBackgroundCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         
         backgroundView.do {
-            $0.backgroundColor = UIColor(red: 20/255, green: 30/255, blue: 40/255, alpha: 1)
+            $0.backgroundColor = UIColor(hexCode: "#212832")
             $0.makeCornerRound(radius: 15.adjusted)
         }
         addSubview(backgroundView)
 
         backgroundView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
+            $0.top.leading.trailing.equalToSuperview()
+            $0.height.equalTo(680.adjusted)
         }
     }
 

@@ -17,7 +17,7 @@ final class FirstBackgroundCollectionReusableView: UICollectionReusableView {
         super.init(frame: frame)
         
         backgroundView.do {
-            $0.backgroundColor = UIColor(red: 20/255, green: 30/255, blue: 40/255, alpha: 1)
+            $0.backgroundColor = UIColor(hexCode: "#212832")
             $0.makeCornerRound(radius: 15.adjusted)
         }
         addSubview(backgroundView)

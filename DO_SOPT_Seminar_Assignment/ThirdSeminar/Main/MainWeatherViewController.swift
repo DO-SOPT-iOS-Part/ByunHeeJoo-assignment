@@ -54,7 +54,8 @@ final class MainWeatherViewController: UIViewController {
         self.navigationItem.title = "날씨"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        self.navigationController?.navigationBar.barTintColor = UIColor(white: 55/255, alpha: 0.1)
+        self.navigationController?.navigationBar.barTintColor = UIColor(hexCode: "#1a1f26")
+
     }
     
     private func setStyle() {

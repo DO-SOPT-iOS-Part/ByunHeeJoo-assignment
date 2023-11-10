@@ -59,7 +59,7 @@ final class WeatherPageDetailViewController: UIViewController {
         
         divisionLine.do {
             $0.layer.addBorder([.top], color: UIColor.gray, width: 0.8)
-            $0.backgroundColor = UIColor(red: 20/255, green: 30/255, blue: 40/255, alpha: 1)
+            $0.backgroundColor = UIColor(hexCode: "#212832")
         }
     
         mapButton.do {
