@@ -33,12 +33,12 @@ final class WeatherPageDetailViewController: UIViewController {
     private let arrowImage = UIImageView()
     private let dotImage = UIImageView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setStyle()
         setLayout()
+        setRegister()
     }
     
     private func setStyle() {
@@ -53,19 +53,8 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.backgroundColor = .clear
             $0.alwaysBounceVertical = true
             $0.isUserInteractionEnabled = true
-            $0.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.className)
-            $0.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
-            $0.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
-            $0.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
-            $0.register(InformationCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InformationCollectionReusableView.className)
-            $0.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.className)
             $0.delegate = self
             $0.dataSource = self
-        }
-        
-        layout.do {
-            $0.register(FirstBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
-            $0.register(SecondBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionTwoBackground")
         }
         
         divisionLine.do {
@@ -144,6 +133,17 @@ final class WeatherPageDetailViewController: UIViewController {
             $0.size.equalTo(24.adjusted)
         }
         
+    }
+    
+    private func setRegister() {
+        collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.className)
+        collectionView.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
+        collectionView.register(WeekOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: WeekOfWeatherCollectionViewCell.className)
+        collectionView.register(WeatherDetailHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className)
+        collectionView.register(InformationCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: InformationCollectionReusableView.className)
+        collectionView.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: FooterCollectionReusableView.className)
+        layout.register(FirstBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
+        layout.register(SecondBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionTwoBackground")
     }
     
     @objc

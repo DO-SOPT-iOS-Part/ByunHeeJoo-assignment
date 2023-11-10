@@ -41,7 +41,7 @@ enum LayoutFactory {
     
     static func createScrollSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(66.adjusted), heightDimension: .absolute(146.adjusted)), subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(66.adjusted), heightDimension: .estimated(146.adjusted)), subitems: [item])
         group.contentInsets = .init(top: 0, leading: 22.adjusted, bottom: 0, trailing: 0)
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuous
