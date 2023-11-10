@@ -27,7 +27,8 @@ final class InformationCollectionReusableView: UICollectionReusableView {
     private func setupHeaderView() {
         self.backgroundColor = UIColor(hexCode: "#212832")
         self.makeCornerRound(radius: 15.adjusted)
-        
+        self.clipsToBounds = true
+
         textLabel.do {
             $0.textColor = .darkGray
             $0.font = .displayMedium(ofSize: 15)

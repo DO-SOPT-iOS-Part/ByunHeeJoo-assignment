@@ -240,9 +240,10 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         
         if offsetY > 230 {
             if navigationAnimator == nil {
-                // moreButton을 찾아 제거
-                if let moreButton = navigationController?.navigationBar.subviews.first(where: { $0 is UIButton }) {
-                    moreButton.removeFromSuperview()
+                if let navigationBar = self.navigationController?.navigationBar {
+                    for subview in navigationBar.subviews {
+                        subview.removeFromSuperview()
+                    }
                 }
                 navigationController?.navigationBar.isHidden = false
                 
