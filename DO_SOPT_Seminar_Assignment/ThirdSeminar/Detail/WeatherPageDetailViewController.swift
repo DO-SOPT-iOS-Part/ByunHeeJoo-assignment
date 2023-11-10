@@ -47,6 +47,7 @@ final class WeatherPageDetailViewController: UIViewController {
         }
                 
         collectionView.do {
+            $0.makeCornerRound(radius: 15.adjusted)
             $0.isScrollEnabled = true
             $0.showsHorizontalScrollIndicator = false
             $0.showsVerticalScrollIndicator = false
