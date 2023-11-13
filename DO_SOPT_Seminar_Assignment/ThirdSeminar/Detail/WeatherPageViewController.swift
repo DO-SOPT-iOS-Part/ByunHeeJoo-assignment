@@ -1,8 +1,8 @@
 //
-//  WeatherDetailViewController.swift
+//  WeatherPageViewController.swift
 //  DO_SOPT_Seminar_Assignment
 //
-//  Created by 변희주 on 2023/10/17.
+//  Created by 변희주 on 2023/11/04.
 //
 
 import UIKit
@@ -10,24 +10,23 @@ import UIKit
 import SnapKit
 import Then
 
-// MARK: - PageViewController
+// MARK: - WeatherPageDetailViewController 들이 담긴 PageViewController
 
-final class PageNavigationController: UIViewController {
+final class WeatherPageViewController: UIViewController {
     
     var pageIndex = 0
     
     private lazy var dataViewControllers: [UIViewController] = {
-        var viewControllers: [WeatherDetailViewController] = []
+        var viewControllers: [WeatherPageDetailViewController] = []
         
         for dummy in Weather.dummy() {
-            let vc = WeatherDetailViewController()
-            vc.placeLabel.text = dummy.place
-            vc.temperatureLabel.text = dummy.temperature
-            vc.weatherLabel.text = dummy.weather
-            vc.highLowTemperatureLabel.text = dummy.highLowTemperature
+            let vc = WeatherPageDetailViewController()
+            vc.placeLabel = dummy.place
+            vc.temperatureLabel = dummy.temperature
+            vc.weatherLabel = dummy.weather
+            vc.highLowTemperatureLabel = dummy.highLowTemperature
             viewControllers.append(vc)
         }
-        
         return viewControllers
     }()
     
@@ -73,7 +72,7 @@ final class PageNavigationController: UIViewController {
     }
 }
 
-extension PageNavigationController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension WeatherPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let index = dataViewControllers.firstIndex(of: viewController) else { return nil }
@@ -92,5 +91,4 @@ extension PageNavigationController: UIPageViewControllerDataSource, UIPageViewCo
         }
         return dataViewControllers[nextIndex]
     }
-    
 }

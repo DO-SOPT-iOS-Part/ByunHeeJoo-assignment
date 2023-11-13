@@ -11,11 +11,14 @@ enum StringLiterals {
     enum information {
         static let title = "날씨"
         static let myPlace = "나의 위치"
-        static let discription = "08:00~09:00에 강우 상태가, 18:00에 한\n때 흐린 상태가 예상됩니다."
+        static let discription = "08:00~09:00에 강우 상태가, 18:00에 한 때 흐린 \n상태가 예상됩니다."
+        static let firstDiscription = "시간별 일기예보"
+        static let secondDiscription = "10일간의 일기예보"
+        static let bottomDiscription = "날씨 데이터 및 지도 데이터에 관하여 더 알아보기"
     }
     
     enum firstWeather {
-        static let firstPlace = "의정부시"
+        static let firstPlace = "고양시"
         static let firstWeather = "흐림"
         static let firstTemperature = "21°"
         static let firstHighLowTemperature = "최고:29°  최저:15°"
@@ -43,7 +46,7 @@ enum StringLiterals {
     }
     
     enum fifthWeather {
-        static let fifthPlace = "고양시"
+        static let fifthPlace = "의정부시"
         static let fifthWeather = "흐림"
         static let fifthTemperature = "31°"
         static let fifthHighLowTemperature = "최고:33°  최저:13°"

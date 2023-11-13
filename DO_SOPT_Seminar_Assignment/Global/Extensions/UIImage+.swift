@@ -21,4 +21,19 @@ extension UIImage {
         }
         return image
     }
+    
+    func applyBlur(radius: CGFloat) -> UIImage? {
+        let context = CIContext(options: nil)
+        if let currentFilter = CIFilter(name: "CIGaussianBlur") {
+            currentFilter.setValue(CIImage(image: self), forKey: kCIInputImageKey)
+            currentFilter.setValue(radius, forKey: kCIInputRadiusKey)
+            if let output = currentFilter.outputImage {
+                if let cgimg = context.createCGImage(output, from: output.extent) {
+                    let processedImage = UIImage(cgImage: cgimg)
+                    return processedImage
+                }
+            }
+        }
+        return nil
+    }
 }

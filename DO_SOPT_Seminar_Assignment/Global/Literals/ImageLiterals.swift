@@ -21,9 +21,14 @@ enum ImageLiterals {
         static var icLightning: UIImage { .load(named: "icLightning")}
         static var icLittleRain: UIImage { .load(named: "icLittleRain")}
         static var icLotOfRain: UIImage { .load(named: "icLotOfRain")}
+        static var icSun: UIImage {UIImage(systemName: "sun.max.fill")!.withRenderingMode(.alwaysOriginal)}
+        static var icSunCloud: UIImage {UIImage(systemName: "cloud.sun.fill")!.withRenderingMode(.alwaysOriginal)}
         static var icMap: UIImage { .load(named: "icMap")}
         static var icMore: UIImage { .load(named: "icMore")}
         static var icPop: UIImage { .load(named: "icPop")}
         static var icSearch: UIImage { .load(named: "icSearch")}
+        static var icCalendar: UIImage { .load(named: "icCalendar")}
+        static var icClock: UIImage { .load(named: "icClock")}
+        static var whiteDot: UIImage { .load(named: "whiteDot")}
     }
 }
