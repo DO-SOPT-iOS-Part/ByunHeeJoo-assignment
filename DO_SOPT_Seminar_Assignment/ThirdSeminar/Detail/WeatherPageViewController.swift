@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - WeatherPageDetailViewController 들이 담긴 PageViewController
+
 final class WeatherPageViewController: UIViewController {
     
     var pageIndex = 0

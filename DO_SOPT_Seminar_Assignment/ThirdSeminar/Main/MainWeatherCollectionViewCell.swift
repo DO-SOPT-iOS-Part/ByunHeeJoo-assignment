@@ -18,6 +18,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     
     weak var delegate: ButtonTouchnAction?
 
+    // MARK: - UI Component
+
     private let basePlaceView = UIView()
     private let basePlaceViewBackground = UIButton()
     private let myPlaceLabel = UILabel()
@@ -26,6 +28,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     private let temperatureLabel = UILabel()
     private let highLowTemperatureLabel = UILabel()
     private var cellIndex = 0
+
+    // MARK: - Life Cycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,6 +47,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         configureCell(weather: .init(place: "", weather: "", temperature: "", highLowTemperature: ""), row: 0)
     }
     
+    // MARK: - UI Style
+
     private func setStyle() {
         basePlaceViewBackground.do {
             $0.setImage(ImageLiterals.imgBackGround.imgQuarterBackground, for: .normal)
@@ -78,6 +84,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - UI Layout
+
     private func setLayout() {
         
         contentView.addSubview(basePlaceView)
@@ -123,6 +131,8 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Configure Cell
+    
     func configureCell(weather: Weather, row: Int) {
         placeLabel.text = weather.place
         weatherLabel.text = weather.weather
@@ -131,6 +141,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         cellIndex = row
     }
     
+    // MARK: - Objc Function
     @objc func
     backGroundTapped(sender: UIButton) {
         delegate?.backGroundTapped(index: cellIndex)

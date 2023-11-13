@@ -11,6 +11,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Main 화면에서 검색결과가 없을 때 나타나는 View
+
 final class NotingView: UIView {
     
     private let searchIcon = UIImageView()

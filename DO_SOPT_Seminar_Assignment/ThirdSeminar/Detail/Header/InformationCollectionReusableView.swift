@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - One Line Header
+
 final class InformationCollectionReusableView: UICollectionReusableView {
     private let headerIcon = UIImageView()
     private let textLabel = UILabel()

@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Main 화면 CollectionView의 Footer
+
 final class FooterCollectionReusableView: UICollectionReusableView {
     private let footerView = UIView()
     

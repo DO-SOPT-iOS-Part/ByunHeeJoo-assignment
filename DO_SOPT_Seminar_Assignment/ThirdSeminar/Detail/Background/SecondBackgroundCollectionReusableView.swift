@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Second Section Background
+
 final class SecondBackgroundCollectionReusableView: UICollectionReusableView {
     private let backgroundView = UIView()
 

@@ -11,11 +11,16 @@ import SnapKit
 import Then
 
 final class InformationCollectionViewCell: UICollectionViewCell {
+    
+    // MARK: - UI Component
+
     let placeLabel = UILabel()
     let weatherLabel = UILabel()
     let temperatureLabel = UILabel()
     let highLowTemperatureLabel = UILabel()
     
+    // MARK: - Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -25,6 +30,8 @@ final class InformationCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    // MARK: - UI Style
     
     private func setStyle() {
         placeLabel.do {
@@ -47,6 +54,8 @@ final class InformationCollectionViewCell: UICollectionViewCell {
             $0.font = .displayMedium(ofSize: 20)
         }
     }
+    
+    // MARK: - UI Layout
     
     private func setLayout() {
         addSubviews(placeLabel, temperatureLabel, weatherLabel, highLowTemperatureLabel)
@@ -71,6 +80,8 @@ final class InformationCollectionViewCell: UICollectionViewCell {
         }
         
     }
+    
+    // MARK: - Configure Cell
     
     func configureCell(place: String, temperature: String, weather: String, highLowTemperature: String) {
         placeLabel.text = place

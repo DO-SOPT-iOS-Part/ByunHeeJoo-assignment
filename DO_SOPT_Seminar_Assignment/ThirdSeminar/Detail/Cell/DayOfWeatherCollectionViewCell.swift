@@ -12,12 +12,15 @@ import Then
 
 final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
     
-    private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
+    // MARK: - UI Component
 
+    private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
     private let timeLabel = UILabel()
     private let weatherImage = UIImageView()
     private let temperatureLabel = UILabel()
     
+    // MARK: - Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -28,6 +31,8 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    // MARK: - UI Style
     
     private func setStyle() {
         divisionLine.do {
@@ -42,6 +47,8 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
             $0.textColor = .white
         }
     }
+    
+    // MARK: - UI Layout
     
     private func setLayout() {
         addSubviews(divisionLine, timeLabel, weatherImage, temperatureLabel)
@@ -65,6 +72,8 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
         
     }
     
+    // MARK: - Configure Cell
+
     func configureCell(weather: WeatherDetail) {
         timeLabel.text = weather.time
         weatherImage.image = weather.weather

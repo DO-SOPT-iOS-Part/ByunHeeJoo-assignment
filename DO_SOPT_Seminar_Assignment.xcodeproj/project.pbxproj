@@ -202,8 +202,8 @@
 		2A3E2E002AF4D90E00FE6418 /* ThirdSeminar */ = {
 			isa = PBXGroup;
 			children = (
-				2A95BCF72AF66F13000551E3 /* Main */,
 				2A1010AF2AF60A540005DEE7 /* Enum */,
+				2A95BCF72AF66F13000551E3 /* Main */,
 				2A10109D2AF5F6D60005DEE7 /* Detail */,
 			);
 			name = ThirdSeminar;

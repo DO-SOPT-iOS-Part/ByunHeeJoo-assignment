@@ -5,11 +5,12 @@
 //  Created by 변희주 on 2023/11/04.
 //
 
+//MARK: - CollectionView Section 별로 다른 SectionLayout 생성
+
 import UIKit
 
 enum LayoutFactory {
     
-    //MARK: - 섹션별로 다른 SectionLayout 생성
     static func create() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { (sectionNumber, environment) -> NSCollectionLayoutSection? in
             let section: NSCollectionLayoutSection
@@ -31,6 +32,8 @@ enum LayoutFactory {
         }
     }
     
+    // MARK: - Section 0에 대한 layout
+    
     static func creatInformation() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(256.adjusted)), subitems: [item])
@@ -39,6 +42,8 @@ enum LayoutFactory {
         return section
     }
     
+    // MARK: - Section 1에 대한 layout
+
     static func createScrollSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .absolute(66.adjusted), heightDimension: .estimated(146.adjusted)), subitems: [item])
@@ -53,6 +58,8 @@ enum LayoutFactory {
         return section
     }
     
+    // MARK: - Section 2에 대한 layout
+
     static func createVerticalSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/11)))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .absolute(335.adjusted), heightDimension: .absolute(643.adjusted)), subitems: [item])
@@ -71,6 +78,8 @@ enum LayoutFactory {
         return section
     }
     
+    // MARK: - 각 Section의 Header
+    
     static func createSupplementaryHeaderItem(forSection section: Int) -> NSCollectionLayoutBoundarySupplementaryItem {
         let headerElement: NSCollectionLayoutBoundarySupplementaryItem
         
@@ -85,6 +94,8 @@ enum LayoutFactory {
         headerElement.pinToVisibleBounds = true
         return headerElement
     }
+    
+    // MARK: - Footer
     
     static func createSupplementaryFooterItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         let footerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .estimated(100.adjusted)), elementKind: UICollectionView.elementKindSectionFooter, alignment: .bottom)

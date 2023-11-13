@@ -12,16 +12,11 @@ import Then
 
 final class MainWeatherViewController: UIViewController {
 
+
     private let dummy = Weather.dummy()
     private var array: [String] = []
     private var filteredArray: [String] = []
     private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
-    
-    private let mainSearchController = UISearchController(searchResultsController: nil)
-    private let moreButton = UIButton()
-    private lazy var collectionView = UICollectionView(frame: .zero,
-                                                       collectionViewLayout: flowLayout)
-    private let flowLayout = UICollectionViewFlowLayout()
     
     private var isFiltering: Bool {
         let searchController = self.navigationItem.searchController
@@ -29,9 +24,19 @@ final class MainWeatherViewController: UIViewController {
         let isSearchBarHasText = searchController?.searchBar.text?.isEmpty == false
         return isActive && isSearchBarHasText
     }
+    
+    // MARK: - UI Component
+
+    private let mainSearchController = UISearchController(searchResultsController: nil)
+    private let moreButton = UIButton()
+    private lazy var collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
+    private let flowLayout = UICollectionViewFlowLayout()
+
     private let notingView = NotingView()
     private let discriptionLabel = UILabel()
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -60,6 +65,8 @@ final class MainWeatherViewController: UIViewController {
         self.navigationItem.hidesBackButton = true
     }
     
+    // MARK: - NavigationBar 설정
+    
     private func setNavigationBar() {
         self.navigationItem.searchController = mainSearchController
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -71,10 +78,14 @@ final class MainWeatherViewController: UIViewController {
 
     }
     
+    // MARK: - UI Style
+
     private func setStyle() {
         for i in 0..<dummy.count {
             array.append(dummy[i].place)
         }
+        
+        // MARK: - SearchController 설정
         
         mainSearchController.do {
             $0.searchResultsUpdater = self
@@ -130,6 +141,8 @@ final class MainWeatherViewController: UIViewController {
     
     }
     
+    // MARK: - UI Layout
+
     private func setLayout() {
         
         view.addSubview(collectionView)

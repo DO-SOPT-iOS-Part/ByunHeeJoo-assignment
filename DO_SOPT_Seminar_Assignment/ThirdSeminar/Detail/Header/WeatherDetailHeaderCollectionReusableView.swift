@@ -10,6 +10,8 @@ import UIKit
 import SnapKit
 import Then
 
+// MARK: - Two Line Header
+
 final class WeatherDetailHeaderCollectionReusableView: UICollectionReusableView {
     
     private let textLabel = UILabel()

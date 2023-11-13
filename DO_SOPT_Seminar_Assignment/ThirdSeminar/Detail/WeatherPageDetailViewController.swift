@@ -16,6 +16,8 @@ final class WeatherPageDetailViewController: UIViewController {
     private let secondDummy = WeatherDetailOfWeek.dummy()
     private var isScrolled: Bool = false
     
+    // MARK: - UI Component
+
     private let backGroundView = UIView()
     private let backGroundImage = UIImageView()
     
@@ -37,6 +39,8 @@ final class WeatherPageDetailViewController: UIViewController {
     private let arrowImage = UIImageView()
     private let dotImage = UIImageView()
     
+    // MARK: - Life Cycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -62,6 +66,8 @@ final class WeatherPageDetailViewController: UIViewController {
         
     }
     
+    // MARK: - UI Style
+
     private func setStyle() {
         backGroundImage.do {
             $0.image = ImageLiterals.imgBackGround.imgFullBackground
@@ -102,6 +108,8 @@ final class WeatherPageDetailViewController: UIViewController {
         }
     }
     
+    // MARK: - UI Layout
+
     private func setLayout() {
         view.addSubview(backGroundView)
         backGroundView.addSubviews(backGroundImage,
@@ -157,6 +165,8 @@ final class WeatherPageDetailViewController: UIViewController {
         
     }
     
+    // MARK: - Register
+    
     private func setRegister() {
         collectionView.register(InformationCollectionViewCell.self, forCellWithReuseIdentifier: InformationCollectionViewCell.className)
         collectionView.register(DayOfWeatherCollectionViewCell.self, forCellWithReuseIdentifier: DayOfWeatherCollectionViewCell.className)
@@ -167,6 +177,8 @@ final class WeatherPageDetailViewController: UIViewController {
         layout.register(FirstBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionOneBackground")
         layout.register(SecondBackgroundCollectionReusableView.self, forDecorationViewOfKind: "sectionTwoBackground")
     }
+    
+    // MARK: - Objc Function
     
     @objc
     func popButtonTapped() {
@@ -240,6 +252,8 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
         }
     }
     
+    // MARK: - Scroll시 작업 수행
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         
@@ -274,7 +288,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
                     $0.centerX.equalToSuperview()
                 }
                 
-                navigationAnimator = UIViewPropertyAnimator(duration: 0.3, curve: .easeIn) {
+                navigationAnimator = UIViewPropertyAnimator(duration: 0.05, curve: .easeIn) {
                     self.collectionView.snp.remakeConstraints {
                         $0.top.equalTo(self.navigationWeather.snp.bottom).offset(25.adjusted)
                         $0.leading.trailing.equalToSuperview().inset(20.adjusted)

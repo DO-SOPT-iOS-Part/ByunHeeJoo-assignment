@@ -12,6 +12,8 @@ import Then
 
 final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI Component
+
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: 305
         .adjusted, height: 0))
     private let dayLabel = UILabel()
@@ -24,6 +26,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     private var gradientLayer: CAGradientLayer?
     private let highTemperatureLabel = UILabel()
     
+    // MARK: - Life Cycle
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -34,6 +38,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
+    
+    // MARK: - UI Style
     
     private func setStyle() {
         divisionLine.do {
@@ -75,6 +81,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - UI Layout
+
     private func setLayout() {
         addSubviews(divisionLine,
                     dayLabel,
@@ -120,6 +128,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         
     }
     
+    // MARK: - Custom ProgresssView
+
     private func setProgressView(x: CGFloat, width: CGFloat) {
         gradientLayer?.removeFromSuperlayer()
         let colors: [CGColor] = [
@@ -156,6 +166,8 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         configureCell(weather: .init(day: "", weather: UIImage(), rainyPercent: "", lowTemperature: "", highTemperature: ""), index: 0)
     }
     
+    // MARK: - Configure Cell
+
     func configureCell(weather: WeatherDetailOfWeek, index: Int) {
         dayLabel.text = weather.day
         weatherImage.image = weather.weather
