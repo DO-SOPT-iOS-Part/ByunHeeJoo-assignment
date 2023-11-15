@@ -44,11 +44,11 @@ DerivedData/
 
 ### Xcode ###
 ## User settings
-xcuserdata/
-
+xcuserdata
 ## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
+*.xcconfig
 
 ### Xcode Patch ###
 *.xcodeproj/*
