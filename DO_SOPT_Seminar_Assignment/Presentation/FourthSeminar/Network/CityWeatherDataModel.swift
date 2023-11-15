@@ -9,8 +9,8 @@ import Foundation
 
 struct CityWeatherDataModel {
     let cityName: String
-    let currentTemperature: String
-    let currentTime: String
-    let highTemperature: String
-    let lowTemperature: String
+    let currentWeather: String
+    let currentTemperature: Double
+    let highTemperature: Double
+    let lowTemperauture: Double
 }

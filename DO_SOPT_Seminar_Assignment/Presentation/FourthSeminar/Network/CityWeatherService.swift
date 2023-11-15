@@ -7,8 +7,8 @@
 
 import Foundation
 
-class CithWeatherService {
-    static let shared = CithWeatherService()
+class CityWeatherService {
+    static let shared = CityWeatherService()
     private init() {}
     
     func makeRequest(cityName: String) -> URLRequest {
@@ -19,7 +19,7 @@ class CithWeatherService {
 
         let apiKey = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.apiKey) as? String ?? ""
         
-        let urlString = "https://api.weatherapi.com/v1/current.json?q=\(encodedCityName)&key=\(apiKey)"
+        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCityName)&appid=\(apiKey)&units=metric"
         
         // URL 생성
         guard let url = URL(string: urlString) else {
@@ -49,7 +49,7 @@ class CithWeatherService {
                 throw NetworkError.responseError
             }
             dump(response)
-            return parseCheckUserExist(data: data)
+            return parseCityWeatherData(data: data)
         } catch {
             throw error
         }
@@ -57,7 +57,7 @@ class CithWeatherService {
     }
     
     
-    private func parseCheckUserExist(data: Data) -> CityWeatherResponseDTO? {
+    private func parseCityWeatherData(data: Data) -> CityWeatherResponseDTO? {
         do {
             let jsonDecoder = JSONDecoder()
             let result = try jsonDecoder.decode(CityWeatherResponseDTO.self, from: data)

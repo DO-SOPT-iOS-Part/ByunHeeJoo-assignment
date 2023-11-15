@@ -23,7 +23,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     private let basePlaceView = UIView()
     private let basePlaceViewBackground = UIButton()
     private let myPlaceLabel = UILabel()
-    private let placeLabel = UILabel()
+    private let currentTimeLabel = UILabel()
     private let weatherLabel = UILabel()
     private let temperatureLabel = UILabel()
     private let highLowTemperatureLabel = UILabel()
@@ -44,7 +44,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        configureCell(weather: .init(place: "", weather: "", temperature: "", highLowTemperature: ""), row: 0)
+        configureCell(weather: .init(cityName: "", currentWeather: "", currentTemperature: 0.0, highTemperature: 0.0, lowTemperauture: 0.0), row: 0)
     }
     
     // MARK: - UI Style
@@ -58,12 +58,11 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         }
         
         myPlaceLabel.do {
-            $0.text = StringLiterals.information.myPlace // 수정필요
             $0.textColor = .white
             $0.font = .displayBold(ofSize: 24)
         }
         
-        placeLabel.do {
+        currentTimeLabel.do {
             $0.textColor = .white
             $0.font = .displayMedium(ofSize: 17)
         }
@@ -92,7 +91,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         
         basePlaceView.addSubviews(basePlaceViewBackground,
                                   myPlaceLabel,
-                                  placeLabel,
+                                  currentTimeLabel,
                                   weatherLabel,
                                   temperatureLabel,
                                   highLowTemperatureLabel)
@@ -110,7 +109,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
         
-        placeLabel.snp.makeConstraints {
+        currentTimeLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(44.adjusted)
             $0.leading.equalToSuperview().inset(16.adjusted)
         }
@@ -133,11 +132,19 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Configure Cell
     
-    func configureCell(weather: Weather, row: Int) {
-        placeLabel.text = weather.place
-        weatherLabel.text = weather.weather
-        temperatureLabel.text = weather.temperature
-        highLowTemperatureLabel.text = weather.highLowTemperature
+    func configureCell(weather: CityWeatherDataModel, row: Int) {
+        
+        myPlaceLabel.text = CityName(rawValue: weather.cityName)?.description
+        
+        let formatter_time = DateFormatter()
+        formatter_time.dateFormat = "HH:mm"
+        let current_time_string = formatter_time.string(from: Date())
+        currentTimeLabel.text = String(current_time_string)
+
+        weatherLabel.text = CityWeather(rawValue: weather.currentWeather)?.description
+        
+        temperatureLabel.text = String(Int(weather.currentTemperature)) + "°"
+        highLowTemperatureLabel.text = "최고:" + String(Int(weather.highTemperature)) + "° " + " 최저:" + String(Int(weather.lowTemperauture)) + "°"
         cellIndex = row
     }
     
