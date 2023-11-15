@@ -12,7 +12,6 @@ import Then
 
 final class MainWeatherViewController: UIViewController {
 
-
     private let dummy = Weather.dummy()
     private var array: [String] = []
     private var filteredArray: [String] = []

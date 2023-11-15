@@ -58,7 +58,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         }
         
         myPlaceLabel.do {
-            $0.text = StringLiterals.information.myPlace
+            $0.text = StringLiterals.information.myPlace // 수정필요
             $0.textColor = .white
             $0.font = .displayBold(ofSize: 24)
         }

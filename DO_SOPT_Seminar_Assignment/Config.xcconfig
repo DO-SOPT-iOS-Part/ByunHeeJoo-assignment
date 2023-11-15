@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  DO_SOPT_Seminar_Assignment
+//
+//  Created by 변희주 on 2023/11/15.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+API_KEY = 301bc46f214744afa1742031231511
