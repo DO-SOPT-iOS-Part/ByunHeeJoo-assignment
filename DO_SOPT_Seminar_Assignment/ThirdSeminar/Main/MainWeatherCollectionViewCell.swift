@@ -136,13 +136,17 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
         
         myPlaceLabel.text = CityName(rawValue: weather.cityName)?.description
         
-        let formatter_time = DateFormatter()
-        formatter_time.dateFormat = "HH:mm"
-        let current_time_string = formatter_time.string(from: Date())
-        currentTimeLabel.text = String(current_time_string)
-
+        if weather.currentTime.count >= 15 {
+            let startIndex = weather.currentTime.index(weather.currentTime.startIndex, offsetBy: 10)
+            let endIndex = weather.currentTime.index(weather.currentTime.startIndex, offsetBy: 15)
+            let realCurrentTime = weather.currentTime[startIndex ..< endIndex]
+            currentTimeLabel.text = String(realCurrentTime)
+        } else {
+            // 처리할 로직이나 기본값 설정 등을 여기에 추가
+            print("Invalid currentTime format")
+        }
+       
         weatherLabel.text = CityWeather(rawValue: weather.currentWeather)?.description
-        
         temperatureLabel.text = String(Int(weather.currentTemperature)) + "°"
         highLowTemperatureLabel.text = "최고:" + String(Int(weather.highTemperature)) + "° " + " 최저:" + String(Int(weather.lowTemperauture)) + "°"
         cellIndex = row
