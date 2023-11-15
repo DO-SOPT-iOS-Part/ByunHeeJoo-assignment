@@ -13,7 +13,6 @@ enum CityWeather: String {
     case sunny = "Suns"
     case clear = "Clear"
     case rainy = "Rains"
-    case jeju = "Jeju"
     
     var description: String {
         switch self {
@@ -25,8 +24,6 @@ enum CityWeather: String {
             return "맑음"
         case .rainy:
             return "비가 내림"
-        case .jeju:
-            return "제주"
         }
     }
 }

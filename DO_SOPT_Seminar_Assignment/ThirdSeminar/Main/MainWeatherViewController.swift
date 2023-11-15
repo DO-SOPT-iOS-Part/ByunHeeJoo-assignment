@@ -20,6 +20,8 @@ final class MainWeatherViewController: UIViewController {
         }
     }
     
+    let cityNames = ["Seoul", "Busan", "Gwangju", "Cheongju", "Jeju"]
+
     private var array: [String] = []
     private var filteredArray: [String] = []
     private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
@@ -54,7 +56,7 @@ final class MainWeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        getCityWeatherInfo()
+        getCityWeatherInfo(cityNames: cityNames)
         
         if let navigationBar = self.navigationController?.navigationBar {
             for subview in navigationBar.subviews {
@@ -257,25 +259,33 @@ extension MainWeatherViewController: ButtonTouchnAction {
 }
 
 extension MainWeatherViewController {
-    private func getCityWeatherInfo() {
+    private func getCityWeatherInfo(cityNames: [String]) {
         Task {
             do {
-                if let result = try await CityWeatherService.shared.GetRegisterData(cityName: "Seoul") {
-                    let data = [result]
-                    let cityWeatherData = data.map { data -> CityWeatherDataModel in
-                        return CityWeatherDataModel(cityName: data.name, currentWeather: data.weather[0].main, currentTemperature: data.main.temp, highTemperature: data.main.temp_max, lowTemperauture: data.main.temp_min)
-                    }
-                    
-                    self.cityWeather = cityWeatherData
-                    
-                    for i in 0..<self.cityWeather.count {
-                        self.array = []
-                        self.array.append(self.cityWeather[i].cityName)
+                var cityWeatherData: [CityWeatherDataModel] = []
+
+                for cityName in cityNames {
+                    if let result = try await CityWeatherService.shared.GetRegisterData(cityName: cityName) {
+                        let data = [result]
+                        let weatherData = data.map { data -> CityWeatherDataModel in
+                            return CityWeatherDataModel(
+                                cityName: data.name,
+                                currentWeather: data.weather[0].main,
+                                currentTemperature: data.main.temp,
+                                highTemperature: data.main.temp_max,
+                                lowTemperauture: data.main.temp_min
+                            )
+                        }
+                        cityWeatherData.append(contentsOf: weatherData)
                     }
                 }
+
+                self.cityWeather = cityWeatherData
+                self.array = cityWeatherData.map { $0.cityName }
             } catch {
                 print(error)
             }
         }
     }
+
 }

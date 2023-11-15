@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct CityWeatherRequestDTO: Encodable {
+    let cityNames: [String]
+}
