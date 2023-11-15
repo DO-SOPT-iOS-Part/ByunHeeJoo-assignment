@@ -12,8 +12,8 @@ enum CityName: String {
     case seoul = "Seoul"
     case busan = "Busan"
     case gwangju = "Gwangju"
-    case cheongju = "Cheongju-si"
-    case jeju = "Jeju City"
+    case cheongju = "Cheongju"
+    case jeju = "Chuncheon"
     
     var description: String {
         switch self {
@@ -26,7 +26,7 @@ enum CityName: String {
         case .cheongju:
             return "청주시"
         case .jeju:
-            return "제주시"
+            return "춘천시"
         }
         
     }

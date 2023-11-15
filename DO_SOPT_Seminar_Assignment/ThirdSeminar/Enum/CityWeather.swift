@@ -9,21 +9,24 @@ import Foundation
 
 @frozen
 enum CityWeather: String {
-    case cloudy = "Clouds"
-    case sunny = "Suns"
     case clear = "Clear"
-    case rainy = "Rains"
+    case mist = "Mist"
+    case overcast = "Overcast"
+    case partly_cloudy = "Partly cloudy"
+    case sunny = "Sunny"
     
     var description: String {
         switch self {
-        case .cloudy:
+        case .clear:
+            return "맑음"
+        case .mist:
+            return "안개"
+        case .overcast:
+            return "흐림"
+        case .partly_cloudy:
             return "흐림"
         case .sunny:
             return "밝음"
-        case .clear:
-            return "맑음"
-        case .rainy:
-            return "비가 내림"
         }
     }
 }

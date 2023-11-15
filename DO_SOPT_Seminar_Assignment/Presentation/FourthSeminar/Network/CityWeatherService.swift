@@ -19,7 +19,8 @@ class CityWeatherService {
 
         let apiKey = Bundle.main.object(forInfoDictionaryKey: Config.Keys.Plist.apiKey) as? String ?? ""
         
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(encodedCityName)&appid=\(apiKey)&units=metric"
+        let urlString =
+        "https://api.weatherapi.com/v1/forecast.json?q=\(encodedCityName)&days=1&key=\(apiKey)"
         
         // URL 생성
         guard let url = URL(string: urlString) else {

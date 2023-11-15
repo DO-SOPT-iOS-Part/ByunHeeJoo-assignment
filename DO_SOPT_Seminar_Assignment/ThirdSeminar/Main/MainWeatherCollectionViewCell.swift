@@ -44,7 +44,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        configureCell(weather: .init(cityName: "", currentWeather: "", currentTemperature: 0.0, highTemperature: 0.0, lowTemperauture: 0.0), row: 0)
+        configureCell(weather: .init(cityName: "", currentTime: "", currentWeather: "", currentTemperature: 0.0, highTemperature: 0.0, lowTemperauture: 0.0), row: 0)
     }
     
     // MARK: - UI Style

@@ -20,7 +20,7 @@ final class MainWeatherViewController: UIViewController {
         }
     }
     
-    let cityNames = ["Seoul", "Busan", "Gwangju", "Cheongju", "Jeju"]
+    private let cityNames: [String] = ["Seoul", "Busan", "Gwangju", "Cheongju", "Chuncheon"]
 
     private var array: [String] = []
     private var filteredArray: [String] = []
@@ -269,11 +269,12 @@ extension MainWeatherViewController {
                         let data = [result]
                         let weatherData = data.map { data -> CityWeatherDataModel in
                             return CityWeatherDataModel(
-                                cityName: data.name,
-                                currentWeather: data.weather[0].main,
-                                currentTemperature: data.main.temp,
-                                highTemperature: data.main.temp_max,
-                                lowTemperauture: data.main.temp_min
+                                cityName: data.location.name,
+                                currentTime: data.location.localtime,
+                                currentWeather: data.current.condition.text,
+                                currentTemperature: data.current.temp_c,
+                                highTemperature: data.forecast.forecastday[0].day.maxtemp_c,
+                                lowTemperauture: data.forecast.forecastday[0].day.mintemp_c
                             )
                         }
                         cityWeatherData.append(contentsOf: weatherData)
@@ -287,5 +288,4 @@ extension MainWeatherViewController {
             }
         }
     }
-
 }
