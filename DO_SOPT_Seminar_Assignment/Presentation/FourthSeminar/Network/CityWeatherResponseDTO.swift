@@ -29,7 +29,7 @@ struct Current: Codable {
     let pressure_in: Double
     let precip_mm, precip_in, humidity, cloud: Int
     let feelslike_c, feelslike_f: Double
-    let vis_km, vis_miles, uv: Int
+    let vis_km, vis_miles, uv: Double
     let gust_mph, gust_kph: Double
 }
 
@@ -88,7 +88,7 @@ struct Hour: Codable {
     let feelslike_c, feelslike_f, windchill_c, windchill_f: Double
     let heatindex_c, heatindex_f, dewpoint_c, dewpoint_f: Double
     let will_it_rain, chance_of_rain, will_it_snow, chance_of_snow: Int
-    let vis_km, vis_miles: Int
+    let vis_km, vis_miles: Double
     let gust_mph, gust_kph: Double
     let uv: Int
 }
