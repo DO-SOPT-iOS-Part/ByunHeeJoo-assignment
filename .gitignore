@@ -49,7 +49,7 @@ xcuserdata
 *.xcscmblueprint
 *.xccheckout
 *.xcconfig
-
+Config.xcconfig
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj
