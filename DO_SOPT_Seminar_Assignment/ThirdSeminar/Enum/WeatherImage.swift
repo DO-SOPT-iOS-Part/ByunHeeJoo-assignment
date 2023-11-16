@@ -22,6 +22,7 @@ enum WeatherImage: String {
     case patchRain = "Patchy rain possible"
     case freezingRain = "Light freezing rain"
     case fog = "Fog"
+    case lightDrizzle = "Patchy light drizzle"
     
     var description: UIImage {
         switch self {
@@ -51,6 +52,8 @@ enum WeatherImage: String {
             return ImageLiterals.icon.icLittleRain
         case .fog:
             return ImageLiterals.icon.icCloud
+        case .lightDrizzle:
+            return ImageLiterals.icon.icLittleRain
         }
     }
 }
