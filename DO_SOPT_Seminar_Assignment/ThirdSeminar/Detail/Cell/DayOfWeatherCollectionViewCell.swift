@@ -13,14 +13,14 @@ import Then
 final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI Component
-
+    
     private let divisionLine = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 0))
     private let timeLabel = UILabel()
     private let weatherImage = UIImageView()
     private let temperatureLabel = UILabel()
     
     // MARK: - Life Cycle
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -73,7 +73,7 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Configure Cell
-
+    
     func configureCell(weather: WeatherOfDayDataModel) {
         let originalDateString = weather.currentTime
         if let convertedHour = Date.convertHourFormat(from: originalDateString) {
@@ -82,7 +82,7 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
             print("날짜 변환에 실패했습니다.")
         }
         weatherImage.image = WeatherImage(rawValue: weather.currentImage)?.description
-        if weatherImage.image == ImageLiterals.icon.icSun {
+        if weatherImage.image == ImageLiterals.icon.icSun || weatherImage.image == ImageLiterals.icon.icSnow || weatherImage.image == ImageLiterals.icon.icWind {
             weatherImage.snp.remakeConstraints {
                 $0.top.equalToSuperview().inset(57.adjusted)
                 $0.size.equalTo(30.adjusted)
@@ -95,7 +95,7 @@ final class DayOfWeatherCollectionViewCell: UICollectionViewCell {
                 $0.height.equalTo(24.adjusted)
                 $0.centerX.equalToSuperview()
             }
-        }else if weatherImage.image == ImageLiterals.icon.icLittleRain || weatherImage.image == ImageLiterals.icon.icLotOfRain {
+        } else if weatherImage.image == ImageLiterals.icon.icLittleRain || weatherImage.image == ImageLiterals.icon.icLotOfRain {
             weatherImage.snp.remakeConstraints {
                 $0.top.equalToSuperview().inset(53.adjusted)
                 $0.size.equalTo(44.adjusted)

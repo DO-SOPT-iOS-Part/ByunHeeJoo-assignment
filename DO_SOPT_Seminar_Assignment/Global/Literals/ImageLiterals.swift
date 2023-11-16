@@ -24,6 +24,8 @@ enum ImageLiterals {
         static var icSun: UIImage {UIImage(systemName: "sun.max.fill")!.withRenderingMode(.alwaysOriginal)}
         static var icSunCloud: UIImage {UIImage(systemName: "cloud.sun.fill")!.withRenderingMode(.alwaysOriginal)}
         static var icSoCloud: UIImage {UIImage(systemName: "cloud.fill")!.withRenderingMode(.alwaysOriginal)}
+        static var icSnow: UIImage {UIImage(systemName: "snowflake")!.withRenderingMode(.alwaysOriginal)}
+        static var icWind: UIImage {UIImage(systemName: "wind")!.withRenderingMode(.alwaysOriginal)}
         static var icMap: UIImage { .load(named: "icMap")}
         static var icMore: UIImage { .load(named: "icMore")}
         static var icPop: UIImage { .load(named: "icPop")}
