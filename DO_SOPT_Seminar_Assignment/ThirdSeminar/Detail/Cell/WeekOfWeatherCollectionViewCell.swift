@@ -133,10 +133,10 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     private func setProgressView(x: CGFloat, width: CGFloat) {
         gradientLayer?.removeFromSuperlayer()
         let colors: [CGColor] = [
-            .init(red: 0.42, green: 0.82, blue: 0.83, alpha: 1),
-            .init(red: 0.51, green: 0.82, blue: 0.73, alpha: 1),
-            .init(red: 0.59, green: 0.82, blue: 0.66, alpha: 1),
-            .init(red: 0.72, green: 0.82, blue: 0.47, alpha: 1)
+            .init(red: 0.42, green: 0.82, blue: 0.98, alpha: 1),
+            .init(red: 0.51, green: 0.82, blue: 0.85, alpha: 1),
+            .init(red: 0.59, green: 0.82, blue: 0.76, alpha: 1),
+            .init(red: 0.72, green: 0.82, blue: 0.67, alpha: 1)
         ]
         progressBackgroud.layoutIfNeeded() // 현재 뷰의 크기를 강제로 설정
         let frame = CGRect(x: x * (100 / 18), y: 0, width: progressBackgroud.bounds.size.width * width, height: progressBackgroud.bounds.size.height)
