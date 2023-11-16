@@ -19,6 +19,12 @@ final class WeatherPageDetailViewController: UIViewController {
         }
     }
     
+    private var headerDescription: String = "" {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
     private let secondDummy = WeatherDetailOfWeek.dummy()
     private var isScrolled: Bool = false
     
@@ -243,6 +249,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
                     return header
                 } else {
                     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
+                    header.configureHeader(text: headerDescription)
                     return header
                 }
             } else if indexPath.section == 2 {
@@ -334,15 +341,18 @@ extension WeatherPageDetailViewController {
         Task {
             do {
                 var weatherOfDayData: [WeatherOfDayDataModel] = []
+                var weahterDescription = ""
                 for i in 0..<23 {
                     if let result = try await CityWeatherService.shared.GetRegisterData(cityName: ReverseCityName(rawValue: cityName)?.description ?? "") {
                         let data = [result]
+                        weahterDescription = data[0].current.condition.text
                         let weatherData = data.map { data -> WeatherOfDayDataModel in
                             return WeatherOfDayDataModel(currentTime: data.forecast.forecastday[0].hour[i].time, currentImage: data.forecast.forecastday[0].hour[i].condition.text, currentTemperature: data.forecast.forecastday[0].hour[i].temp_c)
                         }
                         weatherOfDayData.append(contentsOf: weatherData)
                     }
                     self.dayOfWeather = weatherOfDayData
+                    self.headerDescription = weahterDescription
                 }
             } catch {
                 print(error)

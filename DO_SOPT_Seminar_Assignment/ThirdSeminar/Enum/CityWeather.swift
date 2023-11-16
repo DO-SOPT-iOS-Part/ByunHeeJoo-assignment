@@ -68,85 +68,85 @@ enum CityWeather: String {
         case .sunny:
             return "밝음"
         case .rainPossible:
-            return "비"
+            return "비내림"
         case .lightRain:
-            return "비"
+            return "비내림"
         case .cloudy:
             return "구름"
         case .moderateRain:
-            return "비"
+            return "비내림"
         case .drizzle:
-            return "비"
+            return "비내림"
         case .rainShower:
-            return "비"
+            return "비내림"
         case .freezingRain:
-            return "비"
+            return "비내림"
         case .fog:
             return "안개"
         case .lightDrizzle:
-            return "비"
+            return "비내림"
         case .patchSnow:
-            return "눈"
+            return "눈내림"
         case .patchSleetPossible:
-            return "눈"
+            return "눈내림"
         case .patchFreezingDrizzlePossible:
-            return "눈"
+            return "눈내림"
         case .thunderyOutbreakPossible:
-            return "번개"
+            return "천둥번개"
         case .blowingSnow:
-            return "눈"
+            return "눈내림"
         case .blizzard:
             return "강풍"
         case .freezingFog:
             return "안개"
         case .heavyFreezingDrizzle:
-            return "눈"
+            return "눈내림"
         case .heavyRain:
-            return "비"
+            return "비내림"
         case .moderateOrHeavyFreezingRain:
-            return "비"
+            return "비내림"
         case .lightSleet:
             return "진눈깨비"
         case .moderateOrHeavySleet:
             return "진눈깨비"
         case .patchyLightSnow:
-            return "눈"
+            return "눈내림"
         case .lightSnow:
-            return "눈"
+            return "눈내림"
         case .patchyModerateSnow:
-            return "눈"
+            return "눈내림"
         case .moderateSnow:
-            return "눈"
+            return "눈내림"
         case .patchyHeavySnow:
-            return "눈"
+            return "눈내림"
         case .heavySnow:
-            return "눈"
+            return "눈내림"
         case .icePellets:
-            return "눈"
+            return "눈내림"
         case .moderateOrHeavyRainShower:
-            return "비"
+            return "비내림"
         case .torrentialRainShower:
-            return "비"
+            return "비내림"
         case .lightSleetShowers:
             return "진눈깨비"
         case .moderateOrHeavySleetShowers:
             return "진눈깨비"
         case .lightSnowShowers:
-            return "눈"
+            return "눈내림"
         case .moderateOrHeavySnowShowers:
-            return "눈"
+            return "눈내림"
         case .lightShowersOfIcePellets:
-            return "눈"
+            return "눈내림"
         case .moderateOrHeavyShowersOfIcePellets:
-            return "눈"
+            return "눈내림"
         case .patchyLightRainWithThunder:
-            return "번개"
+            return "천둥번개"
         case .moderateOrHeavyRainWithThunder:
-            return "번개"
+            return "천둥번개"
         case .patchyLightSnowWithThunder:
-            return "번개"
+            return "천둥번개"
         case .moderateOrHeavySnowWithThunder:
-            return "번개"
+            return "천둥번개"
         }
     }
 }
