@@ -12,7 +12,19 @@ import Then
 
 final class WeatherPageDetailViewController: UIViewController {
     
-    private let firstDummy = WeatherDetail.dummy()
+//    private let firstDummy = WeatherDetail.dummy() // 네트워크 통신에선 사용하지 않는 코드
+    private var dayOfWeather: [WeatherOfDayDataModel] = [] { // day 별 날씨 data 중 필요한 data만 담을 베열
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private var headerDescription: String = "" {
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
     private let secondDummy = WeatherDetailOfWeek.dummy()
     private var isScrolled: Bool = false
     
@@ -51,6 +63,8 @@ final class WeatherPageDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        getWeatherOfDayInfo(cityName: placeLabel)
         
         if let navigationBar = self.navigationController?.navigationBar {
             for subview in navigationBar.subviews {
@@ -196,7 +210,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
             return 1
         }
         else if section == 1 {
-            return WeatherDetail.dummy().count
+            return dayOfWeather.count
         } else {
             return WeatherDetailOfWeek.dummy().count
         }
@@ -214,7 +228,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
             return cell
         case .dayOfWeather:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: DayOfWeatherCollectionViewCell.className, for: indexPath) as? DayOfWeatherCollectionViewCell else { return UICollectionViewCell() }
-            let weatherDetail = firstDummy[indexPath.row]
+            let weatherDetail = dayOfWeather[indexPath.row]
             cell.configureCell(weather: weatherDetail)
             return cell
         case .weekOfWeather:
@@ -235,6 +249,7 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
                     return header
                 } else {
                     guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: WeatherDetailHeaderCollectionReusableView.className, for: indexPath) as? WeatherDetailHeaderCollectionReusableView else { fatalError() }
+                    header.configureHeader(text: headerDescription)
                     return header
                 }
             } else if indexPath.section == 2 {
@@ -316,6 +331,31 @@ extension WeatherPageDetailViewController: UICollectionViewDelegate, UICollectio
                 $0.top.equalTo(view.safeAreaLayoutGuide).inset(34.adjusted)
                 $0.leading.trailing.equalToSuperview().inset(20.adjusted)
                 $0.bottom.equalToSuperview()
+            }
+        }
+    }
+}
+
+extension WeatherPageDetailViewController {
+    private func getWeatherOfDayInfo(cityName: String) {
+        Task {
+            do {
+                var weatherOfDayData: [WeatherOfDayDataModel] = []
+                var weahterDescription = ""
+                for i in 0..<23 {
+                    if let result = try await CityWeatherService.shared.GetRegisterData(cityName: ReverseCityName(rawValue: cityName)?.description ?? "") {
+                        let data = [result]
+                        weahterDescription = data[0].current.condition.text
+                        let weatherData = data.map { data -> WeatherOfDayDataModel in
+                            return WeatherOfDayDataModel(currentTime: data.forecast.forecastday[0].hour[i].time, currentImage: data.forecast.forecastday[0].hour[i].condition.text, currentTemperature: data.forecast.forecastday[0].hour[i].temp_c)
+                        }
+                        weatherOfDayData.append(contentsOf: weatherData)
+                    }
+                    self.dayOfWeather = weatherOfDayData
+                    self.headerDescription = weahterDescription
+                }
+            } catch {
+                print(error)
             }
         }
     }

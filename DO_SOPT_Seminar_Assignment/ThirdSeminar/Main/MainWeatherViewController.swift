@@ -12,8 +12,16 @@ import Then
 
 final class MainWeatherViewController: UIViewController {
 
+//    private let dummy = Weather.dummy() // 네트워크 통신에선 사용하지 않는 코드
+    
+    private var cityWeather: [CityWeatherDataModel] = [] { // 날씨 data 중 필요한 data만 담을 베열
+        didSet {
+            self.collectionView.reloadData()
+        }
+    }
+    
+    private let cityNames: [String] = ["Seoul", "Busan", "Gwangju", "Cheongju", "Chuncheon"]
 
-    private let dummy = Weather.dummy()
     private var array: [String] = []
     private var filteredArray: [String] = []
     private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
@@ -48,6 +56,8 @@ final class MainWeatherViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        getCityWeatherInfo(cityNames: cityNames)
+        
         if let navigationBar = self.navigationController?.navigationBar {
             for subview in navigationBar.subviews {
                 subview.removeFromSuperview()
@@ -81,9 +91,6 @@ final class MainWeatherViewController: UIViewController {
     // MARK: - UI Style
 
     private func setStyle() {
-        for i in 0..<dummy.count {
-            array.append(dummy[i].place)
-        }
         
         // MARK: - SearchController 설정
         
@@ -167,14 +174,14 @@ extension MainWeatherViewController: UICollectionViewDelegate, UICollectionViewD
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainWeatherCollectionViewCell.className, for: indexPath) as? MainWeatherCollectionViewCell else { return UICollectionViewCell() }
         if self.isFiltering {
-            for i in 0..<dummy.count {
-                if dummy[i].place == self.filteredArray[indexPath.row] {
-                    cell.configureCell(weather: dummy[i], row: indexPath.row)
+            for i in 0..<cityWeather.count {
+                if cityWeather[i].cityName == self.filteredArray[indexPath.row] {
+                    cell.configureCell(weather: cityWeather[i], row: indexPath.row)
                     realPageIndex = i
                 }
             }
         } else {
-            let weatherText = dummy[indexPath.row]
+            let weatherText = cityWeather[indexPath.row]
             cell.configureCell(weather: weatherText, row: indexPath.row)
         }
         cell.delegate = self
@@ -244,8 +251,41 @@ extension MainWeatherViewController: ButtonTouchnAction {
         } else {
             viewController.pageIndex = index
         }
+        viewController.cityWeather = self.cityWeather
         self.navigationController?.pushViewController(viewController, animated: true)
         realPageIndex = -1
         mainSearchController.isActive = false
+    }
+}
+
+extension MainWeatherViewController {
+    private func getCityWeatherInfo(cityNames: [String]) {
+        Task {
+            do {
+                var cityWeatherData: [CityWeatherDataModel] = []
+
+                for cityName in cityNames {
+                    if let result = try await CityWeatherService.shared.GetRegisterData(cityName: cityName) {
+                        let data = [result]
+                        let weatherData = data.map { data -> CityWeatherDataModel in
+                            return CityWeatherDataModel(
+                                cityName: data.location.name,
+                                currentTime: data.location.localtime,
+                                currentWeather: data.current.condition.text,
+                                currentTemperature: data.current.temp_c,
+                                highTemperature: data.forecast.forecastday[0].day.maxtemp_c,
+                                lowTemperauture: data.forecast.forecastday[0].day.mintemp_c
+                            )
+                        }
+                        cityWeatherData.append(contentsOf: weatherData)
+                    }
+                }
+
+                self.cityWeather = cityWeatherData
+                self.array = cityWeatherData.map { $0.cityName }
+            } catch {
+                print(error)
+            }
+        }
     }
 }

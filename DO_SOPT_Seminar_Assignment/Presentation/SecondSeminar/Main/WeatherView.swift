@@ -18,7 +18,7 @@ protocol BackGroundButtonAction: AnyObject {
 
 final class WeatherView: UIView {
     
-    private let dummy = Weather.dummy() // 구조체 정보 불러오기
+    private let dummy = DummyWeather.dummy() // 구조체 정보 불러오기
     weak var delegate: BackGroundButtonAction?
     
     // MARK: - UI Component

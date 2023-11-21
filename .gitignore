@@ -44,12 +44,12 @@ DerivedData/
 
 ### Xcode ###
 ## User settings
-xcuserdata/
-
+xcuserdata
 ## Xcode 8 and earlier
 *.xcscmblueprint
 *.xccheckout
-
+*.xcconfig
+Config.xcconfig
 ### Xcode Patch ###
 *.xcodeproj/*
 !*.xcodeproj/project.pbxproj

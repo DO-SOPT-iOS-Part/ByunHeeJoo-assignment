@@ -12,7 +12,7 @@ import Then
 
 final class WeatherViewController: UIViewController {
     
-    private let dummy = Weather.dummy() // 구조체 정보 불러오기
+    private let dummy = DummyWeather.dummy() // 구조체 정보 불러오기
     private var realPageIndex = -1 // 선택한 index를 -1로 초기 설정
     
     // MARK: - UI Component

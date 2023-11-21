@@ -15,16 +15,17 @@ import Then
 final class WeatherPageViewController: UIViewController {
     
     var pageIndex = 0
-    
+    var cityWeather: [CityWeatherDataModel] = []
+
     private lazy var dataViewControllers: [UIViewController] = {
         var viewControllers: [WeatherPageDetailViewController] = []
         
-        for dummy in Weather.dummy() {
+        for i in cityWeather {
             let vc = WeatherPageDetailViewController()
-            vc.placeLabel = dummy.place
-            vc.temperatureLabel = dummy.temperature
-            vc.weatherLabel = dummy.weather
-            vc.highLowTemperatureLabel = dummy.highLowTemperature
+            vc.placeLabel = CityName(rawValue: i.cityName)?.description ?? ""
+            vc.temperatureLabel = String(Int(i.currentTemperature)) + "°"
+            vc.weatherLabel = CityWeather(rawValue: i.currentWeather)?.description ?? ""
+            vc.highLowTemperatureLabel = "최고:" + String(Int(i.highTemperature)) + "° " + " 최저:" + String(Int(i.lowTemperauture)) + "°"
             viewControllers.append(vc)
         }
         return viewControllers

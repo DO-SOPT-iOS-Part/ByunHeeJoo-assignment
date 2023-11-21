@@ -133,13 +133,13 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
     private func setProgressView(x: CGFloat, width: CGFloat) {
         gradientLayer?.removeFromSuperlayer()
         let colors: [CGColor] = [
-            .init(red: 0.59, green: 0.82, blue: 0.66, alpha: 1),
-            .init(red: 0.72, green: 0.81, blue: 0.47, alpha: 1),
-            .init(red: 0.97, green: 0.84, blue: 0.29, alpha: 1),
-            .init(red: 0.94, green: 0.53, blue: 0.21, alpha: 1)
+            .init(red: 0.42, green: 0.82, blue: 0.98, alpha: 1),
+            .init(red: 0.51, green: 0.82, blue: 0.85, alpha: 1),
+            .init(red: 0.59, green: 0.82, blue: 0.76, alpha: 1),
+            .init(red: 0.72, green: 0.82, blue: 0.67, alpha: 1)
         ]
         progressBackgroud.layoutIfNeeded() // 현재 뷰의 크기를 강제로 설정
-        let frame = CGRect(x: x * (100 / 17), y: 0, width: progressBackgroud.bounds.size.width * width, height: progressBackgroud.bounds.size.height)
+        let frame = CGRect(x: x * (100 / 18), y: 0, width: progressBackgroud.bounds.size.width * width, height: progressBackgroud.bounds.size.height)
         gradientLayer = CAGradientLayer()
         gradientLayer?.frame = frame
         
@@ -206,10 +206,10 @@ final class WeekOfWeatherCollectionViewCell: UICollectionViewCell {
         let (lowString, _) = weather.lowTemperature.splitLastString()
         let lowToFloat: Float = Float(lowString) ?? 0
         
-        let totalWidth = 17.0
+        let totalWidth = 18.0
         let realWidth = Float(highToFloat - lowToFloat) / Float(totalWidth)
         
-        let x = lowToFloat - 12.0
+        let x = lowToFloat - (-3)
         setProgressView(x: CGFloat(x), width: CGFloat(realWidth))
         if index == 0 {
             progressBackgroud.addSubview(dotBackground)

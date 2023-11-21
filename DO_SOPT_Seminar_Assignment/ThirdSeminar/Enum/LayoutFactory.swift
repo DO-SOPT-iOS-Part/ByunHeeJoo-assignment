@@ -84,9 +84,9 @@ enum LayoutFactory {
         let headerElement: NSCollectionLayoutBoundarySupplementaryItem
         
         if section == 1 {
-            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(38.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(40.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         } else if section == 2 {
-            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(38.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(330.adjusted), heightDimension: .estimated(40.adjusted)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         } else {
             headerElement = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: .init(widthDimension: .estimated(0), heightDimension: .estimated(0)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
         }

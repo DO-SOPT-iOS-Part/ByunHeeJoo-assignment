@@ -19,7 +19,7 @@ final class PageNavigationController: UIViewController {
     private lazy var dataViewControllers: [UIViewController] = {
         var viewControllers: [WeatherDetailViewController] = []
         
-        for dummy in Weather.dummy() {
+        for dummy in DummyWeather.dummy() {
             let vc = WeatherDetailViewController()
             vc.placeLabel.text = dummy.place
             vc.temperatureLabel.text = dummy.temperature
