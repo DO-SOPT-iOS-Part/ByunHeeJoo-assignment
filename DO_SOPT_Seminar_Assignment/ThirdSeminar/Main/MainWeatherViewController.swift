@@ -11,8 +11,6 @@ import SnapKit
 import Then
 
 final class MainWeatherViewController: UIViewController {
-
-//    private let dummy = Weather.dummy() // 네트워크 통신에선 사용하지 않는 코드
     
     private var cityWeather: [CityWeatherDataModel] = [] { // 날씨 data 중 필요한 data만 담을 베열
         didSet {
