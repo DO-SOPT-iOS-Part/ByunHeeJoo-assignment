@@ -148,6 +148,7 @@ final class MainWeatherCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Objc Function
+    
     @objc func
     backGroundTapped(sender: UIButton) {
         delegate?.backGroundTapped(index: cellIndex)

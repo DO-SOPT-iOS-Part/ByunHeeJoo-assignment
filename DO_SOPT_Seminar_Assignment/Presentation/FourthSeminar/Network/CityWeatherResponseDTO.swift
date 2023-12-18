@@ -8,6 +8,7 @@
 import Foundation
 
 // MARK: - CityWeatherResponseDTO
+
 struct CityWeatherResponseDTO: Codable {
     let location: Location
     let current: Current
